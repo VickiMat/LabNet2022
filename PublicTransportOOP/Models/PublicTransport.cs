@@ -8,16 +8,16 @@ namespace PublicTransportOOP.Models
 {
     public abstract class PublicTransport
     {
+        private int _passengers;
+
         public PublicTransport(int passengers)
         {
             _passengers = passengers;
         }
 
-        private int _passengers { get ; }
-
         public int Passengers { get { return _passengers; } }
 
-        public string TypeOfTransport;
+        public string TypeOfTransport { get; set;}
 
         public abstract void Move();
 

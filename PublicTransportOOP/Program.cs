@@ -30,7 +30,15 @@ namespace PublicTransportOOP
                     int adding; 
                     Console.WriteLine($"        Passengers for Bus number {i+1}:");
                     adding = int.Parse(Console.ReadLine());
-                    publicTransports.Add(new Bus(adding));
+                    
+                    while (adding > 90)
+                    {
+                        Console.WriteLine("The number of passengers you entered exceed the capacity of the bus. Please consider the bus only can admit 90 passengers at max");
+                        Console.WriteLine($"Enter again the number of passengers for Bus number {i + 1}");
+                        adding = int.Parse(Console.ReadLine());
+                    }
+
+                    publicTransports.Add(new Bus(adding)); 
                 }
                 Console.WriteLine("      And now enter the passengers for the cabs \n     ------------------------------------------- \n");
                 for (int i = 0; i < 5; i++)
@@ -38,6 +46,14 @@ namespace PublicTransportOOP
                     int adding;
                     Console.WriteLine($"        Passengers for Cab number {i + 1}:");
                     adding = int.Parse(Console.ReadLine());
+
+                    while (adding > 4)
+                    {
+                        Console.WriteLine("The number of passengers you entered exceed the capacity of the cab. Please consider the cab only can admit 4 passengers at max");
+                        Console.WriteLine($"Enter again the number of passengers for Cab number {i + 1}");
+                        adding = int.Parse(Console.ReadLine());
+                    }
+
                     publicTransports.Add(new Cab(adding));
                 }
             }
