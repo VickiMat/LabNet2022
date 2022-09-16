@@ -14,14 +14,14 @@ namespace PublicTransportOOP.Models
             TypeOfTransport = "Bus";
         }
 
-        public override void Move()
+        public override string Move()
         {
-            Console.WriteLine("Bus moving to the next stop");
+            return "moving to the next stop";
         }
 
-        public override void Stop()
+        public override string Stop()
         {
-            Console.WriteLine("Bus stopping at the stop");
+            return "stopping at the stop";
         }
 
     }

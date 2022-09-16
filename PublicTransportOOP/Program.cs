@@ -14,10 +14,15 @@ namespace PublicTransportOOP
         static void Main(string[] args)
         {
             List<PublicTransport> publicTransports = new List<PublicTransport>();
-
+             
             LoadTransport();
 
             ShowTransport();
+
+            Console.WriteLine($"{publicTransports[0].TypeOfTransport} number 1 {publicTransports[0].Move()}");
+            Console.WriteLine($"{publicTransports[5].TypeOfTransport} number 1 {publicTransports[5].Move()}");
+            Console.WriteLine($"{publicTransports[0].TypeOfTransport} number 1 {publicTransports[0].Stop()}");
+            Console.WriteLine($"{publicTransports[5].TypeOfTransport} number 1 {publicTransports[5].Stop()}");
 
             Console.ReadKey();
 
@@ -28,12 +33,12 @@ namespace PublicTransportOOP
                 for (int i = 0; i < 5; i++)
                 {
                     int adding; 
-                    Console.WriteLine($"        Passengers for Bus number {i+1}:");
+                    Console.WriteLine($"        Passengers for Bus number {i + 1}:");
                     adding = int.Parse(Console.ReadLine());
                     
-                    while (adding > 90)
+                    while (adding > 90 || adding < 0)
                     {
-                        Console.WriteLine("The number of passengers you entered exceed the capacity of the bus. Please consider the bus only can admit 90 passengers at max");
+                        Console.WriteLine("The number of passengers you entered exceed the capacity of the bus or it´s a negative number. \nPlease consider the bus only can admit 90 passengers at max and it´s impossible to have negative passengers.");
                         Console.WriteLine($"Enter again the number of passengers for Bus number {i + 1}");
                         adding = int.Parse(Console.ReadLine());
                     }
@@ -47,9 +52,9 @@ namespace PublicTransportOOP
                     Console.WriteLine($"        Passengers for Cab number {i + 1}:");
                     adding = int.Parse(Console.ReadLine());
 
-                    while (adding > 4)
+                    while (adding > 4 || adding < 0)
                     {
-                        Console.WriteLine("The number of passengers you entered exceed the capacity of the cab. Please consider the cab only can admit 4 passengers at max");
+                        Console.WriteLine("The number of passengers you entered exceed the capacity of the cab or it´s a negative number. \nPlease consider the cab only can admit 4 passengers at max and it´s impossible to have negative passengers.");
                         Console.WriteLine($"Enter again the number of passengers for Cab number {i + 1}");
                         adding = int.Parse(Console.ReadLine());
                     }

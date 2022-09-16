@@ -19,8 +19,8 @@ namespace PublicTransportOOP.Models
 
         public string TypeOfTransport { get; set;}
 
-        public abstract void Move();
+        public abstract string Move();
 
-        public abstract void Stop();
+        public abstract string Stop();
     }
 }

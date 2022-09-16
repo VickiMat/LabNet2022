@@ -14,14 +14,14 @@ namespace PublicTransportOOP.Models
 
         }
 
-        public override void Move()
+        public override string Move()
         {
-            Console.WriteLine("Cab mooving forward and looking for passengers");
+            return "mooving forward and looking for passengers";
         }
 
-        public override void Stop()
+        public override string Stop()
         {
-            Console.WriteLine("Cab stopping");
+            return "stopping";
         }
     }
 }
