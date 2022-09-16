@@ -19,10 +19,10 @@ namespace PublicTransportOOP
 
             ShowTransport();
 
-            Console.WriteLine($"{publicTransports[0].TypeOfTransport} number 1 {publicTransports[0].Move()}");
-            Console.WriteLine($"{publicTransports[5].TypeOfTransport} number 1 {publicTransports[5].Move()}");
-            Console.WriteLine($"{publicTransports[0].TypeOfTransport} number 1 {publicTransports[0].Stop()}");
-            Console.WriteLine($"{publicTransports[5].TypeOfTransport} number 1 {publicTransports[5].Stop()}");
+            Console.WriteLine($"{publicTransports[0].TypeOfTransport} number 1 says: {publicTransports[0].Move()} \n");
+            Console.WriteLine($"{publicTransports[5].TypeOfTransport} number 1 says: {publicTransports[5].Move()} \n");
+            Console.WriteLine($"{publicTransports[0].TypeOfTransport} number 1 says: {publicTransports[0].Stop()} \n");
+            Console.WriteLine($"{publicTransports[5].TypeOfTransport} number 1 says: {publicTransports[5].Stop()}");
 
             Console.ReadKey();
 

@@ -16,12 +16,12 @@ namespace PublicTransportOOP.Models
 
         public override string Move()
         {
-            return "mooving forward and looking for passengers";
+            return $"I have {Passengers} passengers and I´m mooving forward";
         }
 
         public override string Stop()
         {
-            return "stopping";
+            return $"I have {Passengers} passengers and I´m stopping";
         }
     }
 }
