@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExceptionsPractice.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExceptionsPractice.Models.Tests
 {
@@ -27,6 +22,20 @@ namespace ExceptionsPractice.Models.Tests
             //Assert
 
             Assert.AreEqual(resultExpected, result);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(DivideByZeroException))]
+        public void DivisionTest_DivisorZero_Exception()
+        {
+            //Arrange
+            decimal divisorNumber = 54;
+            int number0 = 0;
+
+            //Act
+            GeneralDivision.Division(divisorNumber, number0);
+
+            //Assert is handled by the ExpectedException
         }
     }
 }

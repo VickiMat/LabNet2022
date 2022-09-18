@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExceptionsPractice.Models
 {
-    public class ZeroDivisor 
+    public class ZeroDivisor : DivideNumbers
     {
         public static void Division()
         {
@@ -15,7 +10,7 @@ namespace ExceptionsPractice.Models
             {
                 Console.WriteLine("Please insert a number for the division:");
                 decimal divisorNumber = decimal.Parse(Console.ReadLine());
-                decimal result = Division(divisorNumber);
+                decimal result = Division(divisorNumber,0);
                 Console.WriteLine(result);
             }
             catch (DivideByZeroException dex)
@@ -30,12 +25,6 @@ namespace ExceptionsPractice.Models
             {
                 Console.WriteLine("The exercise number 1 ends anyway! \n");
             }
-        }
-
-        public static decimal Division(decimal Number1, decimal Number2 = 0)
-        {
-            decimal result = Number1 / Number2;
-            return result;
         }
     }
 }

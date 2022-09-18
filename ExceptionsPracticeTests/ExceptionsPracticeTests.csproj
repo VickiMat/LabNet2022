@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Models\GeneralDivisionTests.cs" />
+    <Compile Include="Models\LogicTests.cs" />
     <Compile Include="Models\ZeroDivisorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

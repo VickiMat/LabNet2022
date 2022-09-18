@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\MyException.cs" />
+    <Compile Include="Exceptions\CustomMessageException.cs" />
+    <Compile Include="ExtensionMethods\MyExtensions.cs" />
+    <Compile Include="Models\DivideNumbers.cs" />
     <Compile Include="Models\GeneralDivision.cs" />
     <Compile Include="Models\Logic.cs" />
     <Compile Include="Models\ZeroDivisor.cs" />
@@ -53,8 +55,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExceptionsPractice.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExceptionsPractice.Models.Tests
 {
@@ -16,7 +11,7 @@ namespace ExceptionsPractice.Models.Tests
         public void DivisionTest()
         {
             //Arrange
-            decimal divisorNumber = 54;
+            decimal divisorNumber = 84;
             int number0 = 0;
 
             //Act

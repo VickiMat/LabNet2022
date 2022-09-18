@@ -1,10 +1,6 @@
 ﻿using ExceptionsPractice.Exceptions;
 using ExceptionsPractice.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExceptionsPractice
 {
@@ -17,7 +13,7 @@ namespace ExceptionsPractice
             Console.WriteLine("Welcome to the practical exercise of exceptions, extension methods and unit test");
             do
             {
-                Console.WriteLine("Please select with exercise do you want to see: \n1-Division by zero.\n2-General division.\n3-Custom method." +
+                Console.WriteLine("Please select which exercise do you want to see: \n1-Division by zero.\n2-General division.\n3-Custom method." +
                 "\n4-Custom method and custom exception\n5-Exit");
                 chosenExercise = int.Parse(Console.ReadLine());
                 {
@@ -30,27 +26,35 @@ namespace ExceptionsPractice
                             GeneralDivision.Division();
                             break;
                         case 3:
-                            try { Logic.FirstMethod(); }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"You obtain an exception of the type {ex.GetType()} and the message is \"{ex.Message}\" \n");
-                            }
+                            Exercise3();
                             break;
                         case 4:
-                            try { Logic.ThrowMyException(); }
-                            catch (MyException mex)
-                            {
-                                Console.WriteLine($"You obtain an exception of the type {mex.GetType()} and the message is \"{mex.Message}\" \n");
-                            }
+                            Exercise4();
                             break;
                     }
                 }
             }
             while (chosenExercise != 5);
 
-            
+        }
+        private static void Exercise3()
+        {
+            try { Logic.FirstMethod(); }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"You obtain an exception of the type {ex.GetType()} \nand the message is \"{ex.Message}\" \n");
+            }
+            finally { Console.WriteLine("Here ends the exercise number 3\n"); }
+        }
 
-
+        private static void Exercise4()
+        {
+            try { Logic.ThrowMyException(); }
+            catch (CustomMessageException mex)
+            {
+                Console.WriteLine($"You obtain an exception of the type {mex.GetType()} \nand the message is \"{mex.Message}\" \n");
+            }
+            finally { Console.WriteLine("Here ends the exercise number 4\n"); }
         }
     }
 }

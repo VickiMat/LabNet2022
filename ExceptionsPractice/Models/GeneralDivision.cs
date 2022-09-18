@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExceptionsPractice.Models
 {
-    public class GeneralDivision
+    public class GeneralDivision : DivideNumbers
     {
-        public static void Division(/*decimal Number1, decimal Number2*/)
+        public static void Division()
         { 
             try
             {
@@ -17,8 +13,7 @@ namespace ExceptionsPractice.Models
                 decimal Number1 = decimal.Parse(Console.ReadLine());
                 Console.WriteLine("Number 2:");
                 decimal Number2 = decimal.Parse(Console.ReadLine());
-                //GeneralDivision.Division(number1, number2);
-                decimal result = Number1 / Number2;
+                decimal result = Division(Number1,Number2);
                 Console.WriteLine($"The result of the division is: {result} \n");
             }
             catch(DivideByZeroException dex)
@@ -31,6 +26,10 @@ namespace ExceptionsPractice.Models
                 Console.WriteLine("It looks like you entered a letter or you entered nothing. Make sure you enter a valid number.\n" +
                    $"The message of the exception is: \"{fex.Message}\"\n");
             }
+            catch(OverflowException)
+            {
+                Console.WriteLine($"The value you are trying to enter is too big or too low \n");
+            }
             catch(Exception ex)
             {
                 Console.WriteLine($"This is an exception of {ex.GetType()} and the message of the exception is: \"{ex.Message}\"\n");
@@ -41,10 +40,6 @@ namespace ExceptionsPractice.Models
             }
         }
 
-        public static decimal Division(decimal Number1, decimal Number2)
-        {
-            decimal result = Number1 / Number2;
-            return result;
-        }
+        
     }
 }
