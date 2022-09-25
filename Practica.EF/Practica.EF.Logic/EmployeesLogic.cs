@@ -1,14 +1,17 @@
 ﻿using Practica.EF.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Practica.EF.Logic
 {
-    internal class CustomersLogic : BaseLogic, ILogic<Customers>
+    internal class EmployeesLogic : BaseLogic, ILogic<Employees>
     {
-        public void Add(Customers newT)
+        public void Add(Employees newEmp)
         {
-            throw new NotImplementedException();
+            ctx.Employees.Add(newEmp);
+
+            ctx.SaveChanges();
         }
 
         public void Delete(int id)
@@ -16,12 +19,13 @@ namespace Practica.EF.Logic
             throw new NotImplementedException();
         }
 
-        public List<Customers> GetAll()
+        public List<Employees> GetAll()
         {
-            throw new NotImplementedException();
+            return ctx.Employees.ToList();
+
         }
 
-        public void Update(Customers newT)
+        public void Update(Employees newT)
         {
             throw new NotImplementedException();
         }

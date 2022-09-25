@@ -50,7 +50,8 @@
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
     <Compile Include="CategoriesLogic.cs" />
-    <Compile Include="CustomersLogic.cs" />
+    <Compile Include="Common\NotFoundIDException.cs" />
+    <Compile Include="EmployeesLogic.cs" />
     <Compile Include="ILogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
