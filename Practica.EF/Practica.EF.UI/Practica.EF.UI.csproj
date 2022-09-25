@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="CustomValidator.cs" />
+    <Compile Include="ExtensionMethods\CharValidateExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,8 +70,6 @@
       <Name>Practica.EF.Logic</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

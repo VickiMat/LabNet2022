@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Lifetime;
+using System.Collections.Generic;
+using System.Xml.Linq;
 using Practica.EF.Entities;
 using Practica.EF.Logic;
 using Practica.EF.Logic.Common;
+using Practica.EF.UI.ExtensionMethods;
 
 namespace Practica.EF.UI
 {
@@ -17,10 +18,10 @@ namespace Practica.EF.UI
             {
                 Console.WriteLine("Please choose one option: \n" +
                     "1- Show all available categories. \n" +
-                    "2- Show the list of the employees. \n" +
-                    "3- Add new category for the catalog. \n" +
-                    "4- Edit an existing category. \n" +
-                    "5- Delete an existing category. \n" +
+                    "2- Add new category for the catalog. \n" +
+                    "3- Edit an existing category. \n" +
+                    "4- Delete an existing category. \n" +
+                    "5- Show the list of the employees. \n" +
                     "6- Add new employee. \n" +
                     "7- Edit an existing employee. \n" +
                     "8- Delete an employee. \n" +
@@ -34,6 +35,11 @@ namespace Practica.EF.UI
                     case 1:
                         optionMenu = ConsoleHelper.ShowAllCategories();
                         break;
+
+                    case 2:
+                        optionMenu = ConsoleHelper.AddCategory();
+                        break;
+
                     case 5:
                         bool loop = true;
                         do
@@ -64,7 +70,7 @@ namespace Practica.EF.UI
                 }
             }
             while (optionMenu != 9);
-        
         }
     }
 }
+

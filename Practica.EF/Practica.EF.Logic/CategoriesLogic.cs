@@ -17,7 +17,8 @@ namespace Practica.EF.Logic
         {
             ctx.Categories.Add(newCat);
 
-            ctx.SaveChanges();
+            ctx.SaveChanges(); 
+
         }
 
         public void Delete(int id)
