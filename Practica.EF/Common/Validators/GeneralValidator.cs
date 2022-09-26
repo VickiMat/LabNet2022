@@ -1,29 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Text.RegularExpressions;
-using Practica.EF.UI.ExtensionMethods;
+using System.Threading.Tasks;
 
-namespace Practica.EF.UI
+namespace Common.Validators
 {
-    public static class CustomValidator
+    public static class GeneralValidator
     {
- 
         public static int ValidateNumberMenu(string optionEntered)
         {
             int opt;
             while (true)
-            {   
+            {
                 if (Int32.TryParse(optionEntered, out opt))
                 {
                     if (opt > 0 && opt <= 9) break;
-                    else if(opt > 9)
+                    else if (opt > 9)
                     {
                         Console.WriteLine("Remember that the menu only has 9 options. \nEnter a new number: ");
                         optionEntered = Console.ReadLine();
                     }
-                    else if(opt <= 0)
+                    else if (opt <= 0)
                     {
                         Console.WriteLine("Remember that negative numbers and zero are not allowed. \nEnter a new number: ");
                         optionEntered = Console.ReadLine();
@@ -63,8 +61,8 @@ namespace Practica.EF.UI
             {
                 if (Int32.TryParse(contSelect, out optCont))
                 {
-                    if(optCont == 1 || optCont == 2 )
-                    break;
+                    if (optCont == 1 || optCont == 2)
+                        break;
                     else
                     {
                         Console.WriteLine("The only 2 options you have are: \n 1- Choose another action. \n 2- End the program. \nSelect again:");
@@ -78,44 +76,6 @@ namespace Practica.EF.UI
                 }
             }
             return optCont;
-        }
-
-        public static string ValidateCategoryName(string catName)
-        {
-            while (true)
-                if (CharValidateExtension.ValidateBasicString(catName))
-                {
-                    if (catName.Length <= 15) { return catName; }
-                    else
-                    {
-                        Console.WriteLine("You entered a name that is too long! It must be less than 15 chars");
-                        catName = Console.ReadLine();
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("You entered something not valid. Try again.");
-                    catName = Console.ReadLine();
-                }
-        }
-
-        public static string ValidateCategoryDescription(string catDescrip)
-        {
-            while (true)
-                if (CharValidateExtension.ValidateBasicString(catDescrip))
-                {
-                    if (catDescrip.Length <= 300) { return catDescrip; }
-                    else
-                    {
-                        Console.WriteLine("You entered a description that is too long! It must be less than 300 chars");
-                        catDescrip = Console.ReadLine();
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("You entered something not valid. Try again.");
-                    catDescrip = Console.ReadLine();
-                }
         }
     }
 }

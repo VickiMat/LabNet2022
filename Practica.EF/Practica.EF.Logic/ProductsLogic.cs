@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace Practica.EF.Logic
 {
-    internal class ProductsLogic : BaseLogic, ILogic<Products>
+    internal class ProductsLogic : BaseLogic<Products>
     {
-        public void Add(Products newT)
+        public override void Add(Products newT)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public override void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Products FindById(int id)
+        public override Products FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Products> GetAll()
+        public override List<Products> GetAll()
         {
             try
             {
-                return ctx.Products.ToList();
+                return _ctx.Products.ToList();
             }
             catch (Exception)
             {
@@ -36,7 +36,7 @@ namespace Practica.EF.Logic
             }
         }
 
-        public void Update(Products newT)
+        public  override void Update(Products newT)
         {
             throw new NotImplementedException();
         }
@@ -44,7 +44,7 @@ namespace Practica.EF.Logic
         internal void UpdateCategoryId(Products newProd)
         {
             newProd.CategoryID = null;
-            ctx.SaveChanges();        
+            _ctx.SaveChanges();        
         }
     }
 }

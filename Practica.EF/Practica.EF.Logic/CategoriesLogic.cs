@@ -1,18 +1,19 @@
-﻿using Practica.EF.Entities;
-using Practica.EF.Logic.Common;
+﻿using Common;
+using Common.Exceptions;
+using Practica.EF.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Practica.EF.Logic
 {
-    public class CategoriesLogic : BaseLogic, ILogic<Categories>
+    public class CategoriesLogic : BaseLogic<Categories>
     {
-        public List<Categories> GetAll()
+        public override List<Categories> GetAll()
         {
             try
             {
-                return ctx.Categories.ToList();
+                return _ctx.Categories.ToList();
             }
             catch(Exception)
             {
@@ -20,13 +21,13 @@ namespace Practica.EF.Logic
             }  
         }
 
-        public void Add(Categories newCat)
+        public override void Add(Categories newCat)
         {
             try
             {
-                ctx.Categories.Add(newCat);
+                _ctx.Categories.Add(newCat);
 
-                ctx.SaveChanges();
+                _ctx.SaveChanges();
             }
             catch(Exception)
             {
@@ -34,9 +35,7 @@ namespace Practica.EF.Logic
             }
         }
 
-
-
-        public void Update(Categories categ)
+        public override void Update(Categories categ)
         {
             try
             {
@@ -45,7 +44,7 @@ namespace Practica.EF.Logic
                 categForUpdate.CategoryName = categ.CategoryName;
                 categForUpdate.Description = categ.Description;
 
-                ctx.SaveChanges();
+                _ctx.SaveChanges();
             }
             catch (NotFoundIDException)
             {
@@ -57,11 +56,11 @@ namespace Practica.EF.Logic
             }
         }
 
-        public Categories FindById(int id)
+        public override Categories FindById(int id)
         {
             try
             {
-                var categById = ctx.Categories.Find(id);
+                var categById = _ctx.Categories.Find(id);
                 if (categById == null) { throw new NotFoundIDException(id); }
                 else
                 {
@@ -78,7 +77,7 @@ namespace Practica.EF.Logic
             }
         }
 
-        public void Delete(int id)
+        public override void Delete(int id)
         {
             try
             {
@@ -86,9 +85,9 @@ namespace Practica.EF.Logic
 
                 CategoryWithProducts(id);
 
-                ctx.Categories.Remove(categForDelete);
+                _ctx.Categories.Remove(categForDelete);
 
-                ctx.SaveChanges();
+                _ctx.SaveChanges();
             }
             catch (NotFoundIDException)
             {

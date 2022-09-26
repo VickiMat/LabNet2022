@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Common;
+using Common.Exceptions;
+using Common.Validators;
 using Practica.EF.Entities;
 using Practica.EF.Logic;
-using Practica.EF.Logic.Common;
-using Practica.EF.UI.ExtensionMethods;
+
 
 namespace Practica.EF.UI
 {
@@ -51,7 +53,7 @@ namespace Practica.EF.UI
                             {
                                 Console.WriteLine("Enter the id number of the category you want to delete: ");
                                 string selectId = Console.ReadLine();
-                                int idForDelete = CustomValidator.ValidateNumberID(selectId);
+                                int idForDelete = GeneralValidator.ValidateNumberID(selectId);
 
                                 categLogic2.Delete(idForDelete);
                                 Console.WriteLine($"The category with the ID {idForDelete} has been successfully deleted.\n Press a key to continue...");
@@ -70,7 +72,7 @@ namespace Practica.EF.UI
                         while (loop);
                         break;
                 }
-                optionMenu = ConsoleHelper.AnotherOption();
+                optionMenu = ConsoleHelper.AnotherOption(optionMenu == 9);
             }
             while (optionMenu != 9);
         }

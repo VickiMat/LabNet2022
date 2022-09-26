@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
     <Compile Include="CategoriesLogic.cs" />
-    <Compile Include="Common\NotFoundIDException.cs" />
     <Compile Include="EmployeesLogic.cs" />
     <Compile Include="ILogic.cs" />
     <Compile Include="ProductsLogic.cs" />
@@ -61,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DE2B7713-A033-4BCD-AD9E-F267A9D418B0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Practica.EF.Data\Practica.EF.Data.csproj">
       <Project>{7FC6B8FB-3C3A-4FEE-912E-E345B39789CA}</Project>
       <Name>Practica.EF.Data</Name>

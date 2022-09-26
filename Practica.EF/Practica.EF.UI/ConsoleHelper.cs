@@ -1,6 +1,8 @@
-﻿using Practica.EF.Entities;
+﻿using Common;
+using Common.Exceptions;
+using Common.Validators;
+using Practica.EF.Entities;
 using Practica.EF.Logic;
-using Practica.EF.Logic.Common;
 using System;
 
 
@@ -12,19 +14,19 @@ namespace Practica.EF.UI
         {
             try
             {
-                Console.WriteLine("Please choose one option: \n" +
-                    "1- Show all available categories. \n" +
-                    "2- Add new category for the catalog. \n" +
-                    "3- Edit an existing category. \n" +
-                    "4- Delete an existing category. \n" +
-                    "5- Show the list of the employees. \n" +
-                    "6- Add new employee. \n" +
-                    "7- Edit an existing employee. \n" +
-                    "8- Delete an employee. \n" +
-                    "9- Finish the program. ");
+                Console.WriteLine(" Please choose one option: \n\n" +
+                    "   1- Show all available categories. \n" +
+                    "   2- Add new category for the catalog. \n" +
+                    "   3- Edit an existing category. \n" +
+                    "   4- Delete an existing category. \n" +
+                    "   5- Show the list of the employees. \n" +
+                    "   6- Add new employee. \n" +
+                    "   7- Edit an existing employee. \n" +
+                    "   8- Delete an employee. \n" +
+                    "   9- Finish the program. ");
 
                 string selectOpt = Console.ReadLine();
-                int optionMenu = CustomValidator.ValidateNumberMenu(selectOpt);
+                int optionMenu = GeneralValidator.ValidateNumberMenu(selectOpt);
                 return optionMenu;
             }
             catch(Exception ex)
@@ -34,15 +36,22 @@ namespace Practica.EF.UI
             return 0;
         }
 
-        public static int AnotherOption()
+        public static int AnotherOption(bool endProgram)
         {
             try
             {
                 Console.Clear();
-                Console.WriteLine("Do you want to choose another option? \n1-Yes\n2-No ");
+                if (endProgram)
+                {
+                    Console.WriteLine("Don't you want to stay a little longer? \n1-Yes\n2-No ");
+                }
+                else
+                {
+                    Console.WriteLine("Do you want to choose another option? \n1-Yes\n2-No ");
+                }
 
                 string selectCont = Console.ReadLine();
-                int optCont = CustomValidator.ValidateNumberContinue(selectCont);
+                int optCont = GeneralValidator.ValidateNumberContinue(selectCont);
                 if (optCont == 2)
                 {
                     return optCont = 9;
@@ -62,11 +71,13 @@ namespace Practica.EF.UI
             {
                 CategoriesLogic categLogic = new CategoriesLogic();
 
+                Console.WriteLine("----- List of categories -----\n");
+                Console.WriteLine("    ID      |         Name and description \n");
                 foreach (Categories categ in categLogic.GetAll())
                 {
-                    Console.WriteLine(categ.CategoryName + categ.Description);
+                    Console.WriteLine($"  * {categ.CategoryID}         {categ.CategoryName} -> {categ.Description}.\n");
                 }
-                Console.WriteLine("\n The category list ends here. \n Press a key to continue...");
+                Console.WriteLine("\n ----- The category list ends here. ----- \n Press a key to continue...");
                 Console.ReadKey();
             }
             catch(Exception ex)
@@ -83,10 +94,10 @@ namespace Practica.EF.UI
 
                 Console.WriteLine("To insert a new category, first enter the category name:");
                 string categName = Console.ReadLine();
-                categName = CustomValidator.ValidateCategoryName(categName);
+                categName = CategoryValidator.ValidateCategoryName(categName);
                 Console.WriteLine("Great. And now insert the description for the category:");
                 string categDescrip = Console.ReadLine();
-                categDescrip = CustomValidator.ValidateCategoryDescription(categDescrip);
+                categDescrip = CategoryValidator.ValidateCategoryDescription(categDescrip);
 
                 categLogic.Add(new Categories { CategoryName = categName, Description = categDescrip });
 
@@ -110,16 +121,16 @@ namespace Practica.EF.UI
                     CategoriesLogic categLogic3 = new CategoriesLogic();
                     Console.WriteLine("Enter the id number of the category you want to update: ");
                     string selectId = Console.ReadLine();
-                    int idForUpdate = CustomValidator.ValidateNumberID(selectId);
+                    int idForUpdate = GeneralValidator.ValidateNumberID(selectId);
 
                     categLogic3.FindById(idForUpdate);
 
                     Console.WriteLine("Great, the id number exists. Now enter the new name for the category:");
                     string categName = Console.ReadLine();
-                    categName = CustomValidator.ValidateCategoryName(categName);
+                    categName = CategoryValidator.ValidateCategoryName(categName);
                     Console.WriteLine("Perfect. And now insert the description for the category:");
                     string categDescrip = Console.ReadLine();
-                    categDescrip = CustomValidator.ValidateCategoryDescription(categDescrip);
+                    categDescrip = CategoryValidator.ValidateCategoryDescription(categDescrip);
 
                     categLogic3.Update(new Categories { CategoryID = idForUpdate, CategoryName = categName , Description = categDescrip });
                     loop1 = false;

@@ -5,32 +5,32 @@ using System.Linq;
 
 namespace Practica.EF.Logic
 {
-    internal class EmployeesLogic : BaseLogic, ILogic<Employees>
+    internal class EmployeesLogic : BaseLogic<Employees>
     {
-        public void Add(Employees newEmp)
+        public override void Add(Employees newEmp)
         {
-            ctx.Employees.Add(newEmp);
+            _ctx.Employees.Add(newEmp);
 
-            ctx.SaveChanges();
+            _ctx.SaveChanges();
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Employees FindById(int id)
+        public override void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Employees> GetAll()
+        public override Employees FindById(int id)
         {
-            return ctx.Employees.ToList();
+            throw new NotImplementedException();
+        }
+
+        public override List<Employees> GetAll()
+        {
+            return _ctx.Employees.ToList();
 
         }
 
-        public void Update(Employees newT)
+        public override void Update(Employees newT)
         {
             throw new NotImplementedException();
         }

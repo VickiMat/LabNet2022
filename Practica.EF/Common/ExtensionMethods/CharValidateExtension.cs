@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Practica.EF.UI.ExtensionMethods
+namespace Common.ExtensionMethods
 {
     public static class CharValidateExtension
     {
