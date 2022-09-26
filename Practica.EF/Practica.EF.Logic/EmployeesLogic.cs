@@ -19,6 +19,11 @@ namespace Practica.EF.Logic
             throw new NotImplementedException();
         }
 
+        public Employees FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Employees> GetAll()
         {
             return ctx.Employees.ToList();

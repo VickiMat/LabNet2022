@@ -67,7 +67,7 @@ namespace Practica.EF.UI
                     break;
                     else
                     {
-                        Console.WriteLine("The only 2 options you have are: \n 1- Choose another action or \n 2- End the program. \nSelect again:");
+                        Console.WriteLine("The only 2 options you have are: \n 1- Choose another action. \n 2- End the program. \nSelect again:");
                         contSelect = Console.ReadLine();
                     }
                 }

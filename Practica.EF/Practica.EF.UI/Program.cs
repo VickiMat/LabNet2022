@@ -12,35 +12,37 @@ namespace Practica.EF.UI
     {
         static void Main(string[] args)
         {
+            //CategoriesLogic categLogic3 = new CategoriesLogic();
+
+            //Console.WriteLine($"{categLogic3.FindById(1).CategoryName} se encontro");
+            //Console.ReadKey();
+
+            //categLogic3.Update(new Categories { CategoryID = 8, CategoryName = "Sea food" });
+            //ConsoleHelper.ShowAllCategories();
+
+
+
             int optionMenu;
             Console.WriteLine("-------- Welcome to the practice of Entity Framework! -------- \n");
             do
             {
-                Console.WriteLine("Please choose one option: \n" +
-                    "1- Show all available categories. \n" +
-                    "2- Add new category for the catalog. \n" +
-                    "3- Edit an existing category. \n" +
-                    "4- Delete an existing category. \n" +
-                    "5- Show the list of the employees. \n" +
-                    "6- Add new employee. \n" +
-                    "7- Edit an existing employee. \n" +
-                    "8- Delete an employee. \n" +
-                    "9- Finish the program. ");
-
-                string selectOpt = Console.ReadLine();
-                optionMenu = CustomValidator.ValidateNumberMenu(selectOpt);
+                optionMenu = ConsoleHelper.StartMenu();
 
                 switch (optionMenu)
                 {
                     case 1:
-                        optionMenu = ConsoleHelper.ShowAllCategories();
+                        ConsoleHelper.ShowAllCategories();
                         break;
 
                     case 2:
-                        optionMenu = ConsoleHelper.AddCategory();
+                        ConsoleHelper.AddCategory();
                         break;
 
-                    case 5:
+                    case 3:
+                        ConsoleHelper.UpdateCategory();
+                        break;
+
+                    case 4:
                         bool loop = true;
                         do
                         {
@@ -52,13 +54,13 @@ namespace Practica.EF.UI
                                 int idForDelete = CustomValidator.ValidateNumberID(selectId);
 
                                 categLogic2.Delete(idForDelete);
-                                Console.WriteLine($"The category with the ID {idForDelete} has been successfully deleted.\n");
+                                Console.WriteLine($"The category with the ID {idForDelete} has been successfully deleted.\n Press a key to continue...");
                                 loop = false;
+                                Console.ReadKey();
                             }
                             catch (NotFoundIDException nex)
                             {
                                 Console.WriteLine(nex.Message);
-
                             }
                             catch (Exception ex)
                             {
@@ -68,6 +70,7 @@ namespace Practica.EF.UI
                         while (loop);
                         break;
                 }
+                optionMenu = ConsoleHelper.AnotherOption();
             }
             while (optionMenu != 9);
         }

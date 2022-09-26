@@ -10,33 +10,107 @@ namespace Practica.EF.Logic
     {
         public List<Categories> GetAll()
         {
-            return ctx.Categories.ToList();
+            try
+            {
+                return ctx.Categories.ToList();
+            }
+            catch(Exception)
+            {
+                throw new Exception();
+            }  
         }
 
         public void Add(Categories newCat)
         {
-            ctx.Categories.Add(newCat);
+            try
+            {
+                ctx.Categories.Add(newCat);
 
-            ctx.SaveChanges(); 
+                ctx.SaveChanges();
+            }
+            catch(Exception)
+            {
+                throw new Exception();
+            }
+        }
 
+
+
+        public void Update(Categories categ)
+        {
+            try
+            {
+                var categForUpdate = FindById(categ.CategoryID);
+
+                categForUpdate.CategoryName = categ.CategoryName;
+                categForUpdate.Description = categ.Description;
+
+                ctx.SaveChanges();
+            }
+            catch (NotFoundIDException)
+            {
+                throw new NotFoundIDException(categ.CategoryID);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public Categories FindById(int id)
+        {
+            try
+            {
+                var categById = ctx.Categories.Find(id);
+                if (categById == null) { throw new NotFoundIDException(id); }
+                else
+                {
+                    return categById;
+                }
+            }
+            catch (NotFoundIDException)
+            {
+                throw new NotFoundIDException(id);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public void Delete(int id)
         {
-            var categForDelete = ctx.Categories.Find(id);
-
-            if (categForDelete == null) { throw new NotFoundIDException(id); }
-            else
+            try
             {
+                var categForDelete = FindById(id);
+
+                CategoryWithProducts(id);
+
                 ctx.Categories.Remove(categForDelete);
 
                 ctx.SaveChanges();
             }
+            catch (NotFoundIDException)
+            {
+                throw new NotFoundIDException(id);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
-        public void Update(Categories newCat)
+        internal void CategoryWithProducts(int id)
         {
-            throw new NotImplementedException();
+            ProductsLogic products = new ProductsLogic();
+
+            foreach(Products item in products.GetAll())
+            {
+                if(item.CategoryID == id)
+                {
+                    products.UpdateCategoryId(item);
+                }
+            }
         }
     }
 
