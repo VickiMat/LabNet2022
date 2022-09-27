@@ -4,7 +4,7 @@ using Common.Validators;
 using Practica.EF.Entities;
 using Practica.EF.Logic;
 using System;
-
+using System.Runtime.InteropServices;
 
 namespace Practica.EF.UI
 {
@@ -15,14 +15,14 @@ namespace Practica.EF.UI
             try
             {
                 Console.WriteLine(" Please choose one option: \n\n" +
-                    "   1- Show all available categories. \n" +
-                    "   2- Add new category for the catalog. \n" +
-                    "   3- Edit an existing category. \n" +
-                    "   4- Delete an existing category. \n" +
-                    "   5- Show the list of the employees. \n" +
-                    "   6- Add new employee. \n" +
-                    "   7- Edit an existing employee. \n" +
-                    "   8- Delete an employee. \n" +
+                    "   1- Show all available categories. \n\n" +
+                    "   2- Add new category for the catalog. \n\n" +
+                    "   3- Edit an existing category. \n\n" +
+                    "   4- Delete category. \n\n" +
+                    "   5- List of suppliers by city entered. \n\n" +
+                    "   6- Add new supplier. \n\n" +
+                    "   7- Edit an existing supplier. \n\n" +
+                    "   8- Delete supplier. \n\n" +
                     "   9- Finish the program. ");
 
                 string selectOpt = Console.ReadLine();
@@ -43,11 +43,11 @@ namespace Practica.EF.UI
                 Console.Clear();
                 if (endProgram)
                 {
-                    Console.WriteLine("Don't you want to stay a little longer? \n1-Yes\n2-No ");
+                    Console.WriteLine("  Don't you want to stay a little longer? \n\n   1-Yes\n\n   2-No ");
                 }
                 else
                 {
-                    Console.WriteLine("Do you want to choose another option? \n1-Yes\n2-No ");
+                    Console.WriteLine("  Do you want to choose another option? \n\n   1-Yes\n\n   2-No ");
                 }
 
                 string selectCont = Console.ReadLine();
@@ -94,10 +94,10 @@ namespace Practica.EF.UI
 
                 Console.WriteLine("To insert a new category, first enter the category name:");
                 string categName = Console.ReadLine();
-                categName = CategoryValidator.ValidateCategoryName(categName);
+                categName = GeneralValidator.ValidateStringLenght(categName,15);
                 Console.WriteLine("Great. And now insert the description for the category:");
                 string categDescrip = Console.ReadLine();
-                categDescrip = CategoryValidator.ValidateCategoryDescription(categDescrip);
+                categDescrip = GeneralValidator.ValidateStringLenght(categDescrip, 300);
 
                 categLogic.Add(new Categories { CategoryName = categName, Description = categDescrip });
 
@@ -107,7 +107,7 @@ namespace Practica.EF.UI
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("An unexpected error occurred " + ex.Message);
             }
         }
 
@@ -128,10 +128,10 @@ namespace Practica.EF.UI
 
                     Console.WriteLine("Great, the id number exists. Now enter the new name for the category:");
                     string categName = Console.ReadLine();
-                    categName = CategoryValidator.ValidateCategoryName(categName);
+                    categName = GeneralValidator.ValidateStringLenght(categName,15);
                     Console.WriteLine("Perfect. And now insert the description for the category:");
                     string categDescrip = Console.ReadLine();
-                    categDescrip = CategoryValidator.ValidateCategoryDescription(categDescrip);
+                    categDescrip = GeneralValidator.ValidateStringLenght(categDescrip,300);
 
                     categLogic.Update(new Categories { CategoryID = idForUpdate, CategoryName = categName , Description = categDescrip });
                     loop1 = false;
@@ -146,7 +146,7 @@ namespace Practica.EF.UI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("An unexpected error occurred " + ex.Message);
                 }
             }
             while (loop1);
@@ -175,13 +175,153 @@ namespace Practica.EF.UI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("An unexpected error occurred " + ex.Message);
                 }
             }
             while (loop);
         }
 
-        
+        public static void ShowSuppliersByCity()
+        {
+            bool loop2 = true;
+            do
+            {
+                try
+                {
+                    ISuppliersLogic<Suppliers> supLogic = new SuppliersLogic();
 
+                    Console.WriteLine("  Please enter the name of the city:");
+                    var cityNameEntered = Console.ReadLine();
+                    cityNameEntered = GeneralValidator.ValidateStringLenght(cityNameEntered, 15);
+
+                    if (supLogic.FindSuppliersByCity(cityNameEntered).Count == 0)
+                    {
+                        Console.WriteLine("  There is no supplier in that city. \n" +
+                            "  Try with another city like 'Paris'.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"------ List of suppliers in {cityNameEntered} ------\n");
+                   
+                        foreach (var sup in supLogic.FindSuppliersByCity(cityNameEntered))
+                        {
+                            Console.WriteLine($" * Company name: {sup.CompanyName}. - Contact name: {sup.ContactName}. \n");
+                        }
+                        Console.WriteLine("------ The list ends here ------ \n\n Press a key to continue...");
+                        loop2 = false;
+                        Console.ReadKey();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An unexpected error occurred. " + ex.Message);
+                }
+            }
+            while(loop2); 
+        }
+
+        public static void AddSupplier()
+        {
+            try
+            {
+                ILogic<Suppliers> supLogic = new SuppliersLogic();
+
+                Console.WriteLine("To insert a new supplier, first enter the company name:");
+                string companyName = Console.ReadLine();
+                companyName = GeneralValidator.ValidateStringLenght(companyName, 40);
+
+                Console.WriteLine("Great. Now insert the contact name for the supplier:");
+                string contactName = Console.ReadLine();
+                contactName = GeneralValidator.ValidateStringLenght(contactName, 30);
+
+                Console.WriteLine("Finally insert the city name for the supplier:");
+                string cityName = Console.ReadLine();
+                cityName = GeneralValidator.ValidateStringLenght(cityName, 15);
+
+                supLogic.Add(new Suppliers { CompanyName = companyName, ContactName = contactName, City = cityName });
+
+                Console.WriteLine("The supplier was inserted succesfully! \n Press a key to continue...");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An unexpected error occurred" + ex.Message);
+            }
+        }
+
+        public static void UpdateSupplier()
+        {
+            bool loop = true;
+            do
+            {
+                try
+                {
+                    ILogic<Suppliers> supLogic = new SuppliersLogic();
+
+                    Console.WriteLine("  Enter the id number of the supplier you want to update: ");
+                    string selectId = Console.ReadLine();
+                    int idForUpdate = GeneralValidator.ValidateNumberID(selectId);
+
+                    supLogic.FindById(idForUpdate);
+
+                    Console.WriteLine("  Great, the id number exists. Now enter the new company name for the supplier:");
+                    string companyName = Console.ReadLine();
+                    companyName = GeneralValidator.ValidateStringLenght(companyName, 40);
+
+                    Console.WriteLine("  Perfect. Now insert the contact name for the supplier:");
+                    string contactName = Console.ReadLine();
+                    contactName = GeneralValidator.ValidateStringLenght(contactName, 30);
+
+                    Console.WriteLine("  Finally enter the name of the city:");
+                    string cityName = Console.ReadLine();
+                    cityName = GeneralValidator.ValidateStringLenght(cityName, 15);
+
+                    supLogic.Update(new Suppliers { SupplierID = idForUpdate, CompanyName = companyName, ContactName = contactName, City = cityName });
+                    loop = false;
+                    Console.WriteLine($"  The supplier with ID - {idForUpdate} was updated succesfully! \n Press a key to continue...");
+                    Console.ReadKey();
+
+                }
+                catch (NotFoundIDException nex)
+                {
+                    Console.WriteLine(nex.Message);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("An unexpected error occurred " + ex.Message);
+                }
+            }
+            while (loop);
+        }
+
+        public static void DeleteSupplier()
+        {
+            bool loop = true;
+            do
+            {
+                ILogic<Suppliers> supLogic = new SuppliersLogic();
+                try
+                {
+                    Console.WriteLine("  Enter the id number of the supplier you want to delete: ");
+                    string selectId = Console.ReadLine();
+                    int idForDelete = GeneralValidator.ValidateNumberID(selectId);
+
+                    supLogic.Delete(idForDelete);
+                    Console.WriteLine($"  The supplier with the ID {idForDelete} has been successfully deleted.\n  Press a key to continue...");
+                    loop = false;
+                    Console.ReadKey();
+                }
+                catch (NotFoundIDException nex)
+                {
+                    Console.WriteLine(nex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("  An unexpected error occurred " + ex.Message);
+                }
+            }
+            while (loop);
+        }
     }
 }

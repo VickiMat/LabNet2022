@@ -14,19 +14,6 @@ namespace Practica.EF.UI
     {
         static void Main(string[] args)
         {
-            ISuppliersLogic<Suppliers> supLogic = new SuppliersLogic();
-
-        
-            //CategoriesLogic categLogic3 = new CategoriesLogic();
-
-            //Console.WriteLine($"{categLogic3.FindById(1).CategoryName} se encontro");
-            //Console.ReadKey();
-
-            //categLogic3.Update(new Categories { CategoryID = 8, CategoryName = "Sea food" });
-            //ConsoleHelper.ShowAllCategories();
-
-
-
             int optionMenu;
             Console.WriteLine("-------- Welcome to the practice of Entity Framework! -------- \n");
             do
@@ -49,6 +36,21 @@ namespace Practica.EF.UI
 
                     case 4:
                         ConsoleHelper.DeleteCategory();
+                        break;
+
+                    case 5:
+                        ConsoleHelper.ShowSuppliersByCity();
+                        break;
+                    case 6:
+                        ConsoleHelper.AddSupplier();
+                        break;
+
+                    case 7:
+                        ConsoleHelper.UpdateSupplier();
+                        break;
+
+                    case 8:
+                        ConsoleHelper.DeleteSupplier();
                         break;
                 }
                 optionMenu = ConsoleHelper.AnotherOption(optionMenu == 9);

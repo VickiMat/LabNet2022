@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Practica.EF.Logic
 {
     internal class ProductsLogic : BaseLogic<Products>
@@ -41,10 +38,31 @@ namespace Practica.EF.Logic
             throw new NotImplementedException();
         }
 
+        //This method change the FK CategoryID to null. Allowing delete the asociate category.
         internal void UpdateCategoryId(Products newProd)
         {
-            newProd.CategoryID = null;
-            _ctx.SaveChanges();        
+            try
+            {
+                newProd.CategoryID = null;
+                _ctx.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }       
+        }
+        //This method change the FK SupplierID to null. Allowing delete the asociate supplier.
+        internal void UpdateSupplierId(Products newProd)
+        {
+            try
+            {
+                newProd.SupplierID = null;
+                _ctx.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

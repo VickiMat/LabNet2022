@@ -1,5 +1,4 @@
-﻿using Common;
-using Common.Exceptions;
+﻿using Common.Exceptions;
 using Practica.EF.Entities;
 using System;
 using System.Collections.Generic;
@@ -99,6 +98,8 @@ namespace Practica.EF.Logic
             }
         }
 
+        //This method evaluates if there is any product that depends on any category.
+        //If it finds it, it calls a method to solve the foreign key restriction.
         internal void CategoryWithProducts(int id)
         {
             ProductsLogic products = new ProductsLogic();

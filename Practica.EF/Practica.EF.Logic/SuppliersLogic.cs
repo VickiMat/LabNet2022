@@ -1,27 +1,86 @@
-﻿using Practica.EF.Entities;
+﻿using Common.Exceptions;
+using Practica.EF.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Practica.EF.Logic
 {
     public class SuppliersLogic : BaseLogic<Suppliers>, ISuppliersLogic<Suppliers>
     {
-        public override void Add(Suppliers newT)
+        public override void Add(Suppliers newSup)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _ctx.Suppliers.Add(newSup);
+
+                _ctx.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var suppForDelete = FindById(id);
+
+                SupplierWithProducts(id);
+
+                _ctx.Suppliers.Remove(suppForDelete);
+
+                _ctx.SaveChanges();
+            }
+            catch (NotFoundIDException)
+            {
+                throw new NotFoundIDException(id);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        //This method evaluates if there is any product that depends on any supplier.
+        //If it finds it, it calls a method to solve the foreign key restriction.
+        internal void SupplierWithProducts(int id)
+        {
+            ProductsLogic products = new ProductsLogic();
+
+            foreach (Products item in products.GetAll())
+            {
+                if (item.SupplierID == id)
+                {
+                    products.UpdateSupplierId(item);
+                }
+            }
         }
 
         public override Suppliers FindById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var suppById = _ctx.Suppliers.Find(id);
+                if(suppById == null)
+                {
+                    throw new NotFoundIDException(id);
+                }
+                else
+                {
+                    return suppById;
+                }
+            }
+            catch (NotFoundIDException)
+            {
+                throw new NotFoundIDException(id);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public override List<Suppliers> GetAll()
@@ -36,15 +95,44 @@ namespace Practica.EF.Logic
             }
         }
 
-        public override void Update(Suppliers newT)
+        public override void Update(Suppliers supp)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var suppForUpdate = FindById(supp.SupplierID);
+
+                suppForUpdate.CompanyName = supp.CompanyName;
+                suppForUpdate.ContactName = supp.ContactName;
+                suppForUpdate.City = supp.City;
+
+                _ctx.SaveChanges();
+            }
+            catch (NotFoundIDException)
+            {
+                throw new NotFoundIDException(supp.SupplierID);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public List<Suppliers> FindSuppliersByCity(string cityName)
-        {//comparar ciudad con ciudad de supplier y armar una nueva lista
+        {
+            try
+            {
+                List<Suppliers> listSupByCity = new List<Suppliers>();
 
-            throw new NotImplementedException();
+                foreach (var supplier in GetAll())
+                {
+                    if (supplier.City.ToLower() == cityName.ToLower())
+                    {
+                        listSupByCity.Add(supplier);
+                    }
+                }
+                return listSupByCity;
+            }
+            catch (Exception ex) { throw ex; }
         }
     }
 }
