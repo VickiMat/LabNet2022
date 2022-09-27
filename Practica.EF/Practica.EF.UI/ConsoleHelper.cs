@@ -1,10 +1,8 @@
-﻿using Common;
-using Common.Exceptions;
+﻿using Common.Exceptions;
 using Common.Validators;
 using Practica.EF.Entities;
 using Practica.EF.Logic;
 using System;
-using System.Runtime.InteropServices;
 
 namespace Practica.EF.UI
 {
@@ -201,7 +199,7 @@ namespace Practica.EF.UI
                     }
                     else
                     {
-                        Console.WriteLine($"------ List of suppliers in {cityNameEntered} ------\n");
+                        Console.WriteLine($"------ List of suppliers in {cityNameEntered.ToUpper()} ------\n");
                    
                         foreach (var sup in supLogic.FindSuppliersByCity(cityNameEntered))
                         {

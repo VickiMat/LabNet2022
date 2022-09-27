@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using Common;
-using Common.Exceptions;
-using Common.Validators;
-using Practica.EF.Entities;
-using Practica.EF.Logic;
 
 
 namespace Practica.EF.UI
