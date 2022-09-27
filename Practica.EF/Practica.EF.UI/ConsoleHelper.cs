@@ -69,7 +69,7 @@ namespace Practica.EF.UI
         {
             try
             {
-                CategoriesLogic categLogic = new CategoriesLogic();
+                ILogic < Categories > categLogic = new CategoriesLogic();
 
                 Console.WriteLine("----- List of categories -----\n");
                 Console.WriteLine("    ID      |         Name and description \n");
@@ -90,7 +90,7 @@ namespace Practica.EF.UI
         {
             try
             {
-                CategoriesLogic categLogic = new CategoriesLogic();
+                ILogic <Categories> categLogic = new CategoriesLogic();
 
                 Console.WriteLine("To insert a new category, first enter the category name:");
                 string categName = Console.ReadLine();
@@ -118,12 +118,13 @@ namespace Practica.EF.UI
             {
                 try
                 {
-                    CategoriesLogic categLogic3 = new CategoriesLogic();
+                    ILogic<Categories> categLogic = new CategoriesLogic();
+     
                     Console.WriteLine("Enter the id number of the category you want to update: ");
                     string selectId = Console.ReadLine();
                     int idForUpdate = GeneralValidator.ValidateNumberID(selectId);
 
-                    categLogic3.FindById(idForUpdate);
+                    categLogic.FindById(idForUpdate);
 
                     Console.WriteLine("Great, the id number exists. Now enter the new name for the category:");
                     string categName = Console.ReadLine();
@@ -132,7 +133,7 @@ namespace Practica.EF.UI
                     string categDescrip = Console.ReadLine();
                     categDescrip = CategoryValidator.ValidateCategoryDescription(categDescrip);
 
-                    categLogic3.Update(new Categories { CategoryID = idForUpdate, CategoryName = categName , Description = categDescrip });
+                    categLogic.Update(new Categories { CategoryID = idForUpdate, CategoryName = categName , Description = categDescrip });
                     loop1 = false;
                     Console.WriteLine("The category was updated succesfully! \n Press a key to continue...");
                     Console.ReadKey();
@@ -151,6 +152,36 @@ namespace Practica.EF.UI
             while (loop1);
         }
  
+        public static void DeleteCategory()
+        {
+            bool loop = true;
+            do
+            {
+                ILogic<Categories> categLogic = new CategoriesLogic();
+                try
+                {
+                    Console.WriteLine("Enter the id number of the category you want to delete: ");
+                    string selectId = Console.ReadLine();
+                    int idForDelete = GeneralValidator.ValidateNumberID(selectId);
+
+                    categLogic.Delete(idForDelete);
+                    Console.WriteLine($"The category with the ID {idForDelete} has been successfully deleted.\n Press a key to continue...");
+                    loop = false;
+                    Console.ReadKey();
+                }
+                catch (NotFoundIDException nex)
+                {
+                    Console.WriteLine(nex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            while (loop);
+        }
+
+        
 
     }
 }

@@ -17,13 +17,13 @@ namespace Common.Validators
                     if (catName.Length <= 15) { return catName; }
                     else
                     {
-                        Console.WriteLine("You entered a name that is too long! It must be less than 15 chars");
+                        Console.WriteLine(" You entered a name that is too long! It must be less than 15 chars");
                         catName = Console.ReadLine();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("You entered something not valid. Try again.");
+                    Console.WriteLine(" You entered something not valid. Remember that special characters are not allowed. \n Please try again.");
                     catName = Console.ReadLine();
                 }
         }
@@ -36,13 +36,13 @@ namespace Common.Validators
                     if (catDescrip.Length <= 300) { return catDescrip; }
                     else
                     {
-                        Console.WriteLine("You entered a description that is too long! It must be less than 300 chars");
+                        Console.WriteLine(" You entered a description that is too long! It must be less than 300 chars");
                         catDescrip = Console.ReadLine();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("You entered something not valid. Try again.");
+                    Console.WriteLine(" You entered something not valid. Remember that special characters are not allowed. \n Please try again.");
                     catDescrip = Console.ReadLine();
                 }
         }

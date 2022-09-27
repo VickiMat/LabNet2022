@@ -14,6 +14,9 @@ namespace Practica.EF.UI
     {
         static void Main(string[] args)
         {
+            ISuppliersLogic<Suppliers> supLogic = new SuppliersLogic();
+
+        
             //CategoriesLogic categLogic3 = new CategoriesLogic();
 
             //Console.WriteLine($"{categLogic3.FindById(1).CategoryName} se encontro");
@@ -45,31 +48,7 @@ namespace Practica.EF.UI
                         break;
 
                     case 4:
-                        bool loop = true;
-                        do
-                        {
-                            CategoriesLogic categLogic2 = new CategoriesLogic();
-                            try
-                            {
-                                Console.WriteLine("Enter the id number of the category you want to delete: ");
-                                string selectId = Console.ReadLine();
-                                int idForDelete = GeneralValidator.ValidateNumberID(selectId);
-
-                                categLogic2.Delete(idForDelete);
-                                Console.WriteLine($"The category with the ID {idForDelete} has been successfully deleted.\n Press a key to continue...");
-                                loop = false;
-                                Console.ReadKey();
-                            }
-                            catch (NotFoundIDException nex)
-                            {
-                                Console.WriteLine(nex.Message);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine(ex.Message);
-                            }
-                        }
-                        while (loop);
+                        ConsoleHelper.DeleteCategory();
                         break;
                 }
                 optionMenu = ConsoleHelper.AnotherOption(optionMenu == 9);
