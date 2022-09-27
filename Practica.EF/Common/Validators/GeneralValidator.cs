@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,6 +77,25 @@ namespace Common.Validators
                 }
             }
             return optCont;
+        }
+
+        public static string ValidateStringLenght(string stringToValidate, int lenghtOfString)
+        {
+            while (true)
+                if (CharValidateExtension.ValidateBasicString(stringToValidate))
+                {
+                    if (stringToValidate.Length <= lenghtOfString) { return stringToValidate; }
+                    else
+                    {
+                        Console.WriteLine($" You entered a name that is too long! It must be less than {lenghtOfString} chars");
+                        stringToValidate = Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(" You entered something not valid. Remember that special characters are not allowed. \n Please try again.");
+                    stringToValidate = Console.ReadLine();
+                }
         }
     }
 }

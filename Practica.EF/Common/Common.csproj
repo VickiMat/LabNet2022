@@ -44,7 +44,6 @@
     <Compile Include="ExtensionMethods\CharValidateExtension.cs" />
     <Compile Include="Exceptions\NotFoundIDException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validators\CategoryValidator.cs" />
     <Compile Include="Validators\GeneralValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
