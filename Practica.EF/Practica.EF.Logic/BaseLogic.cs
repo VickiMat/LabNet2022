@@ -12,8 +12,6 @@ namespace Practica.EF.Logic
             _ctx = new NorthwindContext();
          }
 
-    
-
         public abstract void Add(T newT);
         public abstract void Delete(int id);
         public abstract T FindById(int id);

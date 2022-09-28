@@ -46,7 +46,6 @@ namespace Practica.EF.Logic
         {
             try
             {
-
                 var categForUpdate = FindById(categ.CategoryID);
 
                 categForUpdate.CategoryName = categ.CategoryName;
