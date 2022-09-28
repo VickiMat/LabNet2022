@@ -1,4 +1,5 @@
 ﻿using Common.Exceptions;
+using Practica.EF.Data;
 using Practica.EF.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,13 @@ namespace Practica.EF.Logic
 {
     public class CategoriesLogic : BaseLogic<Categories>
     {
+        public CategoriesLogic() { }
+
+        public CategoriesLogic(NorthwindContext ctx)
+        {
+            _ctx = ctx;
+        }
+
         public override List<Categories> GetAll()
         {
             try
@@ -38,6 +46,7 @@ namespace Practica.EF.Logic
         {
             try
             {
+
                 var categForUpdate = FindById(categ.CategoryID);
 
                 categForUpdate.CategoryName = categ.CategoryName;

@@ -5,12 +5,14 @@ namespace Practica.EF.Logic
 {
     public abstract class BaseLogic<T> : ILogic<T>
     {
-         protected readonly NorthwindContext _ctx;
+         protected NorthwindContext _ctx;
 
          public BaseLogic()
          {
             _ctx = new NorthwindContext();
          }
+
+    
 
         public abstract void Add(T newT);
         public abstract void Delete(int id);
