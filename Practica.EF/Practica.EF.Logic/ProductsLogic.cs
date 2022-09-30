@@ -5,8 +5,64 @@ using System.Linq;
 
 namespace Practica.EF.Logic
 {
-    internal class ProductsLogic : BaseLogic<Products>
+    public class ProductsLogic : BaseLogic<Products>
     {
+
+        public IQueryable<Products> ProductsWithoutStock()
+        {
+            var products = _ctx.Products;
+
+            var query2 = products.Where(p => p.UnitsInStock == 0);
+                              
+            return query2;
+        }
+
+        public IQueryable<Products> ProductsWithStockAndPriceOver3()
+        {
+            var products = _ctx.Products;
+
+            var query3 = from product in products
+                         where product.UnitsInStock != 0 &&
+                               product.UnitPrice > 3
+                         select product;
+
+            return query3;
+        }
+
+        public Products ProductWithID_789_OrNull()
+        {
+            var products = _ctx.Products;
+
+            var query5 = from product in products
+                         where product.ProductID == 789
+                         select product;
+            if (query5 == null)
+            {
+                return null;
+            }
+            else return query5.First();
+        }
+
+        public IEnumerable<Products> ProductsOrderBy_Name()
+        {
+            var products = _ctx.Products;
+
+            var query9 = from product in products
+                         orderby product.ProductName
+                         select product;
+
+            return query9;
+        }
+
+        public IEnumerable<Products> ProductsOrderBy_UnitsInStock()
+        {
+            var products = _ctx.Products;
+
+            var query10 = products.OrderByDescending(p => p.UnitsInStock);
+            
+            return query10;
+        }
+
         public override void Add(Products newT)
         {
             throw new NotImplementedException();

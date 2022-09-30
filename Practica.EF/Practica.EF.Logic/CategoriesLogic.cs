@@ -16,6 +16,8 @@ namespace Practica.EF.Logic
             _ctx = ctx;
         }
 
+
+
         public override List<Categories> GetAll()
         {
             try

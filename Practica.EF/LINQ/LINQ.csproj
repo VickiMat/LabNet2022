@@ -33,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,11 +50,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleHelperLINQ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DE2B7713-A033-4BCD-AD9E-F267A9D418B0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practica.EF.Data\Practica.EF.Data.csproj">
+      <Project>{7FC6B8FB-3C3A-4FEE-912E-E345B39789CA}</Project>
+      <Name>Practica.EF.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practica.EF.Entities\Practica.EF.Entities.csproj">
+      <Project>{59024477-A21B-4A9D-8EEC-7204DEAC96FD}</Project>
+      <Name>Practica.EF.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practica.EF.Logic\Practica.EF.Logic.csproj">
+      <Project>{4E4BB2B1-4C88-420D-BA5E-915DA5ADF17F}</Project>
+      <Name>Practica.EF.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
