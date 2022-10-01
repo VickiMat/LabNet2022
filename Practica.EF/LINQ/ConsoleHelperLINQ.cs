@@ -1,46 +1,39 @@
-﻿using Common.Exceptions;
-using Common.Validators;
-using Practica.EF.Entities;
-using Practica.EF.Logic;
+﻿using Practica.EF.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LINQ
 {
     public abstract class ConsoleHelperLINQ
     {
-        public static void Exercise1()
-        {
-            try
-            {
-                CustomersLogic custLogic = new CustomersLogic();
+        //public static void Exercise1()
+        //{
+        //    try
+        //    {
+        //        CustomersLogic custLogic = new CustomersLogic();
 
-                Console.WriteLine("  Please insert the id of the customer you wanna search, remember that the id is made up of 5 letters: ");
-                string idEnter = Console.ReadLine();
-                CustomersValidator.ValidateIDString(idEnter).ToUpper();
+        //        Console.WriteLine("  Please insert the id of the customer you wanna search, remember that the id is made up of 5 letters: ");
+        //        string idEnter = Console.ReadLine();
+        //        CustomersValidator.ValidateIDString(idEnter).ToUpper();
 
-                var customer = custLogic.QueryCustomer(idEnter);
+        //        var customer = custLogic.QueryCustomer(idEnter);
 
-                foreach (var item in customer)
-                {
-                    Console.WriteLine($"  Customer with ID {item.CustomerID} \n  Company Name: {item.CompanyName} - Contact Name: {item.ContactName} - Contact Title: {item.ContactTitle}\n" +
-                        $"  Adress: {item.Address} - City: {item.City} - Region: {item.Region} - Postal Code: {item.PostalCode} - Country: {item.Country}\n" +
-                        $"  Phone: {item.Phone} - Fax: {item.Fax}");
-                }
+        //        foreach (var item in customer)
+        //        {
+        //            Console.WriteLine($"  Customer with ID {item.CustomerID} \n  Company Name: {item.CompanyName} - Contact Name: {item.ContactName} - Contact Title: {item.ContactTitle}\n" +
+        //                $"  Adress: {item.Address} - City: {item.City} - Region: {item.Region} - Postal Code: {item.PostalCode} - Country: {item.Country}\n" +
+        //                $"  Phone: {item.Phone} - Fax: {item.Fax}");
+        //        }
                 
-            }
-            catch(NotFoundIDException nex)
-            {
-                Console.WriteLine(nex.Message);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            } 
-        }
+        //    }
+        //    catch(NotFoundIDException nex)
+        //    {
+        //        Console.WriteLine(nex.Message);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    } 
+        //}
 
         public static void Exercise2()
         {
@@ -60,7 +53,9 @@ namespace LINQ
 
                     iterator++;
                 }
-                Console.WriteLine("----- End of the list -----");
+                Console.WriteLine("----- End of the list -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
             }
             catch(Exception ex)
             {
@@ -69,6 +64,7 @@ namespace LINQ
         }
 
         public static void Exercise3()
+
         {
             try
             {
@@ -86,7 +82,9 @@ namespace LINQ
 
                     iterator++;
                 }
-                Console.WriteLine("----- End of the list -----");
+                Console.WriteLine("----- End of the list -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -110,7 +108,9 @@ namespace LINQ
                         $"  Phone: {cust.Phone} - Fax: {cust.Fax} \n");
                     iterator++;
                 }
-                Console.WriteLine("----- The list ends here -----");
+                Console.WriteLine("----- The list ends here -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
@@ -118,25 +118,27 @@ namespace LINQ
             }
         }
 
-        public static void Exercise5()
-        {
-            try
-            {
-                ProductsLogic prodLogic = new ProductsLogic();
+        //public static void Exercise5()
+        //{
+        //    try
+        //    {
+        //        ProductsLogic prodLogic = new ProductsLogic();
 
-                var product = prodLogic.ProductWithID_789_OrNull();
+        //        var product = prodLogic.ProductWithID_789_OrNull();
 
-                if (product == null || product.ToString().Length == 0)
-                {
-                    Console.WriteLine("  There is no product available with that id.");
-                }
-                else Console.WriteLine($"  The product with ID 789 is {product.ProductName}.\n");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+        //        if (product == null || product.ToString().Length == 0)
+        //        {
+        //            Console.WriteLine("  There is no product available with that id.");
+        //            Console.WriteLine("  Press a key to continue...\n");
+        //            Console.ReadKey();
+        //        }
+        //        else Console.WriteLine($"  The product with ID 789 is {product.ProductName}.\n");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //}
 
         public static void Exercise6()
         {
@@ -152,9 +154,36 @@ namespace LINQ
                     Console.WriteLine($"  * UPPER NAME : {custName.ToUpper()} | lower name : {custName.ToLower()} \n");
                 }
 
-                Console.WriteLine("----- The list ends here -----");
+                Console.WriteLine("----- The list ends here -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
             }
             catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public static void Exercise7()
+        {
+            try
+            {
+                CustomersLogic custLogic = new CustomersLogic();
+                int iterator = 1;
+                var customersAndOrders = custLogic.CustomersFromRegion_AndOrdersFromDate();
+
+                Console.WriteLine("  List of customers and orders where the region is WA and the date of the order is after 1997/01/01\n\n");
+                foreach(var item in customersAndOrders)
+                {
+                    Console.WriteLine($"  *{iterator} | Customer ID: {item.CustomerID} - Company Name: {item.CompanyName} - Region: {item.Region}\n" +
+                        $"  Order ID: {item.OrderID} - Order date: {item.OrderDate}\n");
+                    iterator++;
+                }
+                Console.WriteLine("----- The list ends here -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
+            }
+            catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -176,6 +205,8 @@ namespace LINQ
                       $"  Adress: {cust.Address} - City: {cust.City} - Region: {cust.Region} - Postal Code: {cust.PostalCode} - Country: {cust.Country}\n" +
                       $"  Phone: {cust.Phone} - Fax: {cust.Fax} \n");
                 }
+                Console.WriteLine("\n  Press a key to continue...");
+                Console.ReadKey();
             }
             catch(Exception ex)
             {
@@ -202,7 +233,9 @@ namespace LINQ
 
                     iterator++;
                 }
-                    Console.WriteLine("----- End of the list -----");
+                Console.WriteLine("----- End of the list -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
             }
             catch(Exception ex)
             {
@@ -228,7 +261,81 @@ namespace LINQ
 
                     iterator++;
                 }
-                Console.WriteLine("----- End of the list -----");
+                Console.WriteLine("----- End of the list -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        //public static void Exercise11()
+        //{
+        //    try
+        //    {
+        //        CategoriesLogic categLogic = new CategoriesLogic();
+
+        //        int iterator = 1;
+
+        //        var categories = categLogic.CategoriesAssociateProducts();
+
+        //        Console.WriteLine("----- List of categories with products -----\n");
+        //        foreach (var category in categories)
+        //        {
+        //            Console.WriteLine($"  *{iterator} | ID: {category.CategoryID} - Category Name: {category.CategoryName}");
+        //            iterator++;
+        //        }
+        //        Console.WriteLine("----- The list ends here ------\n");
+        //        Console.WriteLine("  Press a key to continue...");
+        //        Console.ReadKey();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+
+        //}
+
+        public static void Exercise12()
+        {
+            try
+            {
+                ProductsLogic prodLogic = new ProductsLogic();
+
+                Console.WriteLine(" The first element in a list of products is: \n");
+                var element = prodLogic.GetFirstProduct();
+
+                Console.WriteLine($"   * ID: {element.ProductID} - Product Name: {element.ProductName}");
+                Console.WriteLine("\n\n Press a key to continue...");
+                Console.ReadKey();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+     
+        public static void Exercise13()
+        {
+            try
+            {
+                CustomersLogic custLogic = new CustomersLogic();
+                int iterator = 1;
+                var customersAndOrders = custLogic.CustomersWithNumberOfOrders();
+
+                Console.WriteLine("  List of customers and numbers of orders associate\n\n");
+                foreach (var item in customersAndOrders)
+                {
+                    Console.WriteLine($"  *{iterator} | Customer ID: {item.CustomerID} - Company Name: {item.CompanyName}\n" +
+                        $"  Number of orders {item.NumberOfOrders}\n");
+                    iterator++;
+                }
+                Console.WriteLine("----- The list ends here -----\n");
+                Console.WriteLine("  Press a key to continue...");
+                Console.ReadKey();
+
             }
             catch (Exception ex)
             {

@@ -24,7 +24,7 @@ namespace Practica.EF.UI
                     "   9- Finish the program. ");
 
                 string selectOpt = Console.ReadLine();
-                int optionMenu = GeneralValidator.ValidateNumberMenu(selectOpt);
+                int optionMenu = GeneralValidator.ValidateNumberMenu(selectOpt, 9);
                 return optionMenu;
             }
             catch(Exception ex)

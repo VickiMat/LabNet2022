@@ -1,38 +1,34 @@
 ﻿using Common.Exceptions;
 using Practica.EF.Data;
 using Practica.EF.Entities;
+using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Practica.EF.Logic
 {
     public class CustomersLogic : BaseLogic<Customers>
     {
-        public IQueryable<Customers> QueryCustomer(string idEntered)
+        public Customers QueryCustomer(string idEntered)
         {
-            //if (customersQuery == null)
-            //{
-            //    throw new NotFoundIDException(idEntered);
-            //}
             var customers = _ctx.Customers;
 
-            var query1 = from cust in customers
-                                  where cust.CustomerID == idEntered
-                                  select cust;
+            var query1 = customers.Take(1);
 
-            
-            return query1;
+            return query1.First();
         }
 
         public IQueryable<Customers> CustomersRegionWA()
         {
             var customers = _ctx.Customers;
-
+            
             var query4 = customers.Where(c => c.Region == "WA");
 
             return query4;
@@ -56,6 +52,54 @@ namespace Practica.EF.Logic
             return query6;
         }
 
+        public IQueryable<CustomersOrdersDto> CustomersFromRegion_AndOrdersFromDate()
+        {
+            var customers = _ctx.Customers;
+            var orders = _ctx.Orders;
+
+            DateTime specificDate = new DateTime(1997, 01, 01);
+
+            var query7 = from c in customers
+                         join o in orders
+                         on c.CustomerID equals o.CustomerID
+                         where c.Region == "WA" && o.OrderDate > specificDate
+                         select new CustomersOrdersDto
+                         {
+                             CustomerID = c.CustomerID,
+                             Region = c.Region,
+                             OrderDate = o.OrderDate,
+                             CompanyName = c.CompanyName,
+                             OrderID = o.OrderID
+                         };
+
+            return query7;
+        }
+
+        public IQueryable<CustomersOrdersDto> CustomersWithNumberOfOrders()
+        {
+            var customers = _ctx.Customers;
+            var orders = _ctx.Orders;
+
+            var query13 = from c in customers
+                          join o in orders
+                          on c.CustomerID equals o.CustomerID
+                          group c by new
+                          {
+                              CompanyName = c.CompanyName,
+                              CustomerID = c.CustomerID
+                          }
+                          into co
+                          select new CustomersOrdersDto
+                          {
+                              NumberOfOrders = co.Count(),
+                              CustomerID = co.Key.CustomerID,
+                              CompanyName = co.Key.CompanyName
+                          };
+
+            return query13;
+        }
+
+
         public Customers FindById(string idEnter)
         {
             try
@@ -77,6 +121,7 @@ namespace Practica.EF.Logic
             }
 
         }
+
         public override void Add(Customers newT)
         {
             throw new NotImplementedException();

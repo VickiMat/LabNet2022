@@ -63,6 +63,14 @@ namespace Practica.EF.Logic
             return query10;
         }
 
+        public Products GetFirstProduct()
+        {
+            var products = _ctx.Products;
+
+            var query12 = products.First();
+            return query12;
+        }
+
         public override void Add(Products newT)
         {
             throw new NotImplementedException();

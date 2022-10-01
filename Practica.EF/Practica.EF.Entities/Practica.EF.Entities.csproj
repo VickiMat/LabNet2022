@@ -51,6 +51,8 @@
     <Compile Include="Categories.cs" />
     <Compile Include="CustomerDemographics.cs" />
     <Compile Include="Customers.cs" />
+    <Compile Include="DTO\CategoriesProductsDto.cs" />
+    <Compile Include="DTO\CustomersOrdersDto.cs" />
     <Compile Include="Employees.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="Order_Details.cs" />

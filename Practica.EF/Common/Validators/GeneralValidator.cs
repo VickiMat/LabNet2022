@@ -5,17 +5,17 @@ namespace Common.Validators
 {
     public static class GeneralValidator
     {
-        public static int ValidateNumberMenu(string optionEntered)
+        public static int ValidateNumberMenu(string optionEntered, int optionsInMenu)
         {
             int opt;
             while (true)
             {
                 if (Int32.TryParse(optionEntered, out opt))
                 {
-                    if (opt > 0 && opt <= 9) break;
-                    else if (opt > 9)
+                    if (opt > 0 && opt <= optionsInMenu) break;
+                    else if (opt > optionsInMenu)
                     {
-                        Console.WriteLine("Remember that the menu only has 9 options. \nEnter a new number: ");
+                        Console.WriteLine($"Remember that the menu only has {optionsInMenu} options. \nEnter a new number: ");
                         optionEntered = Console.ReadLine();
                     }
                     else if (opt <= 0)

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Practica.EF.Data;
-using Practica.EF.Entities;
-using Practica.EF.Logic;
 
 namespace LINQ
 {
@@ -13,20 +6,69 @@ namespace LINQ
     {
         static void Main(string[] args)
         {
+            int option = 0;
+            Console.WriteLine("----- Welcome to the practice of LINQ -----");
 
-            //ConsoleHelperLINQ.Exercise1();
+            do
+            {
+                option = ConsoleHelperMenu.StartMenu();
 
-            //ConsoleHelperLINQ.Exercise2();
+                switch (option)
+                {
+                    case 1:
+                        //ConsoleHelperLINQ.Exercise1();
+                        break;
 
-            //ConsoleHelperLINQ.Exercise3();
+                    case 2:
+                        ConsoleHelperLINQ.Exercise2();
+                        break;
 
-            //ConsoleHelperLINQ.Exercise4();
+                    case 3:
+                        ConsoleHelperLINQ.Exercise3();
+                        break;
 
-            //ConsoleHelperLINQ.Exercise5();
+                    case 4:
+                        ConsoleHelperLINQ.Exercise4();
+                        break;
 
-            ConsoleHelperLINQ.Exercise10();
+                    case 5:
+                        //ConsoleHelperLINQ.Exercise5();
+                        break;
+                    case 6:
+                        ConsoleHelperLINQ.Exercise6();
+                        break;
 
-            Console.ReadKey();
-        }
+                    case 7:
+                        ConsoleHelperLINQ.Exercise7();
+                        break;
+
+                    case 8:
+                        ConsoleHelperLINQ.Exercise8();
+                        break;
+
+                    case 9:
+                        ConsoleHelperLINQ.Exercise9();
+                        break;
+
+                    case 10:
+                        ConsoleHelperLINQ.Exercise10();
+                        break;
+
+                    case 11:
+                        //ConsoleHelperLINQ.Exercise11();
+                        break;
+
+                    case 12:
+                        ConsoleHelperLINQ.Exercise12();
+                        break;
+
+                    case 13:
+                        ConsoleHelperLINQ.Exercise13();
+                        break;
+                }
+                option = ConsoleHelperMenu.AnotherOption(option == 14);
+            }
+            while (option!= 14);
+        } 
     }
 }
