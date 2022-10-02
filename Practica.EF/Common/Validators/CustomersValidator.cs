@@ -7,7 +7,7 @@ namespace Common.Validators
 
         public static string ValidateIDString(string idEnter)
         {
-            GeneralValidator.ValidateStringLenght(idEnter, 5);
+            GeneralValidator.ValidateTextStringLenght(idEnter, 5);
 
             while (true)
                 if (idEnter.Length == 5)

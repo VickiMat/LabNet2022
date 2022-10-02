@@ -75,7 +75,7 @@ namespace Common.Validators
             return optCont;
         }
 
-        public static string ValidateStringLenght(string stringToValidate, int lenghtOfString)
+        public static string ValidateTextStringLenght(string stringToValidate, int lenghtOfString)
         {
             while (true)
                 if (CharValidateExtension.ValidateBasicString(stringToValidate))
@@ -83,13 +83,32 @@ namespace Common.Validators
                     if (stringToValidate.Length <= lenghtOfString) { return stringToValidate; }
                     else
                     {
-                        Console.WriteLine($" You entered a name that is too long! It must be less than {lenghtOfString} chars");
+                        Console.WriteLine($" You entered a name that is too long! It must be less than or equal to {lenghtOfString} characters");
                         stringToValidate = Console.ReadLine();
                     }
                 }
                 else
                 {
                     Console.WriteLine(" You entered something not valid. Remember that special characters are not allowed. \n Please try again.");
+                    stringToValidate = Console.ReadLine();
+                }
+        }
+
+        public static string ValidateStringLenght(string stringToValidate, int lenghtOfString)
+        {
+            while (true)
+                if (!string.IsNullOrWhiteSpace(stringToValidate))
+                {
+                    if (stringToValidate.Length <= lenghtOfString) { return stringToValidate; }
+                    else
+                    {
+                        Console.WriteLine($" You entered a name that is too long! It must be less than or equal to {lenghtOfString} characters");
+                        stringToValidate = Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(" You must enter something \n Please try again.");
                     stringToValidate = Console.ReadLine();
                 }
         }

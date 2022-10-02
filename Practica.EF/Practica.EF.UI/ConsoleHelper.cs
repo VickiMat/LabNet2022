@@ -92,10 +92,10 @@ namespace Practica.EF.UI
 
                 Console.WriteLine("To insert a new category, first enter the category name:");
                 string categName = Console.ReadLine();
-                categName = GeneralValidator.ValidateStringLenght(categName,15);
+                categName = GeneralValidator.ValidateTextStringLenght(categName,15);
                 Console.WriteLine("Great. And now insert the description for the category:");
                 string categDescrip = Console.ReadLine();
-                categDescrip = GeneralValidator.ValidateStringLenght(categDescrip, 300);
+                categDescrip = GeneralValidator.ValidateTextStringLenght(categDescrip, 300);
 
                 categLogic.Add(new Categories { CategoryName = categName, Description = categDescrip });
 
@@ -126,10 +126,10 @@ namespace Practica.EF.UI
 
                     Console.WriteLine("Great, the id number exists. Now enter the new name for the category:");
                     string categName = Console.ReadLine();
-                    categName = GeneralValidator.ValidateStringLenght(categName,15);
+                    categName = GeneralValidator.ValidateTextStringLenght(categName,15);
                     Console.WriteLine("Perfect. And now insert the description for the category:");
                     string categDescrip = Console.ReadLine();
-                    categDescrip = GeneralValidator.ValidateStringLenght(categDescrip,300);
+                    categDescrip = GeneralValidator.ValidateTextStringLenght(categDescrip,300);
 
                     categLogic.Update(new Categories { CategoryID = idForUpdate, CategoryName = categName , Description = categDescrip });
                     loop1 = false;
@@ -190,7 +190,7 @@ namespace Practica.EF.UI
 
                     Console.WriteLine("  Please enter the name of the city:");
                     var cityNameEntered = Console.ReadLine();
-                    cityNameEntered = GeneralValidator.ValidateStringLenght(cityNameEntered, 15);
+                    cityNameEntered = GeneralValidator.ValidateTextStringLenght(cityNameEntered, 15);
 
                     if (supLogic.FindSuppliersByCity(cityNameEntered).Count == 0)
                     {
@@ -226,15 +226,15 @@ namespace Practica.EF.UI
 
                 Console.WriteLine("To insert a new supplier, first enter the company name:");
                 string companyName = Console.ReadLine();
-                companyName = GeneralValidator.ValidateStringLenght(companyName, 40);
+                companyName = GeneralValidator.ValidateTextStringLenght(companyName, 40);
 
                 Console.WriteLine("Great. Now insert the contact name for the supplier:");
                 string contactName = Console.ReadLine();
-                contactName = GeneralValidator.ValidateStringLenght(contactName, 30);
+                contactName = GeneralValidator.ValidateTextStringLenght(contactName, 30);
 
                 Console.WriteLine("Finally insert the city name for the supplier:");
                 string cityName = Console.ReadLine();
-                cityName = GeneralValidator.ValidateStringLenght(cityName, 15);
+                cityName = GeneralValidator.ValidateTextStringLenght(cityName, 15);
 
                 supLogic.Add(new Suppliers { CompanyName = companyName, ContactName = contactName, City = cityName });
 
@@ -264,15 +264,15 @@ namespace Practica.EF.UI
 
                     Console.WriteLine("  Great, the id number exists. Now enter the new company name for the supplier:");
                     string companyName = Console.ReadLine();
-                    companyName = GeneralValidator.ValidateStringLenght(companyName, 40);
+                    companyName = GeneralValidator.ValidateTextStringLenght(companyName, 40);
 
                     Console.WriteLine("  Perfect. Now insert the contact name for the supplier:");
                     string contactName = Console.ReadLine();
-                    contactName = GeneralValidator.ValidateStringLenght(contactName, 30);
+                    contactName = GeneralValidator.ValidateTextStringLenght(contactName, 30);
 
                     Console.WriteLine("  Finally enter the name of the city:");
                     string cityName = Console.ReadLine();
-                    cityName = GeneralValidator.ValidateStringLenght(cityName, 15);
+                    cityName = GeneralValidator.ValidateTextStringLenght(cityName, 15);
 
                     supLogic.Update(new Suppliers { SupplierID = idForUpdate, CompanyName = companyName, ContactName = contactName, City = cityName });
                     loop = false;

@@ -1,39 +1,42 @@
-﻿using Practica.EF.Logic;
+﻿using Common.Exceptions;
+using Common.Validators;
+using Practica.EF.Logic;
 using System;
 
 namespace LINQ
 {
     public abstract class ConsoleHelperLINQ
     {
-        //public static void Exercise1()
-        //{
-        //    try
-        //    {
-        //        CustomersLogic custLogic = new CustomersLogic();
+        public static void Exercise1()
+        {
+            try
+            {
+                CustomersLogic custLogic = new CustomersLogic();
 
-        //        Console.WriteLine("  Please insert the id of the customer you wanna search, remember that the id is made up of 5 letters: ");
-        //        string idEnter = Console.ReadLine();
-        //        CustomersValidator.ValidateIDString(idEnter).ToUpper();
+                Console.WriteLine("  Please insert the id of the customer you want to search, remember that the id is made up of 5 letters: ");
+                string idEnter = Console.ReadLine();
+                idEnter = GeneralValidator.ValidateStringLenght(idEnter, 5).ToUpper();
 
-        //        var customer = custLogic.QueryCustomer(idEnter);
+                var customer = custLogic.QueryCustomer(idEnter);
 
-        //        foreach (var item in customer)
-        //        {
-        //            Console.WriteLine($"  Customer with ID {item.CustomerID} \n  Company Name: {item.CompanyName} - Contact Name: {item.ContactName} - Contact Title: {item.ContactTitle}\n" +
-        //                $"  Adress: {item.Address} - City: {item.City} - Region: {item.Region} - Postal Code: {item.PostalCode} - Country: {item.Country}\n" +
-        //                $"  Phone: {item.Phone} - Fax: {item.Fax}");
-        //        }
-                
-        //    }
-        //    catch(NotFoundIDException nex)
-        //    {
-        //        Console.WriteLine(nex.Message);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    } 
-        //}
+                if (customer == null) throw new NotFoundIDException(idEnter);
+                else
+                {
+                    Console.WriteLine($"  Customer with ID {customer.CustomerID} \n  Company Name: {customer.CompanyName} - Contact Name: {customer.ContactName} - Contact Title: {customer.ContactTitle}\n" +
+                        $"  Adress: {customer.Address} - City: {customer.City} - Region: {customer.Region} - Postal Code: {customer.PostalCode} - Country: {customer.Country}\n" +
+                        $"  Phone: {customer.Phone} - Fax: {customer.Fax}");
+                }
+            }
+            catch (NotFoundIDException nex)
+            {
+                Console.WriteLine(nex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.ReadKey();
+        }
 
         public static void Exercise2()
         {
@@ -118,27 +121,30 @@ namespace LINQ
             }
         }
 
-        //public static void Exercise5()
-        //{
-        //    try
-        //    {
-        //        ProductsLogic prodLogic = new ProductsLogic();
+        public static void Exercise5()
+        {
+            try
+            {
+                ProductsLogic prodLogic = new ProductsLogic();
 
-        //        var product = prodLogic.ProductWithID_789_OrNull();
+                var product = prodLogic.FindById(789);
 
-        //        if (product == null || product.ToString().Length == 0)
-        //        {
-        //            Console.WriteLine("  There is no product available with that id.");
-        //            Console.WriteLine("  Press a key to continue...\n");
-        //            Console.ReadKey();
-        //        }
-        //        else Console.WriteLine($"  The product with ID 789 is {product.ProductName}.\n");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //}
+                if (product != null)
+                {
+                    Console.WriteLine($"  The product with ID 789 is {product.ProductName}.\n");
+                }
+                else throw new NotFoundIDException(789);
+            }
+            catch(NotFoundIDException nex)
+            {
+                Console.WriteLine(nex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.ReadKey();
+        }
 
         public static void Exercise6()
         {
@@ -201,8 +207,8 @@ namespace LINQ
                 
                 foreach(var cust in customers)
                 {
-                    Console.WriteLine($"  * ID: {cust.CustomerID} - Company Name: {cust.CompanyName} - Contact Name: {cust.ContactName} - Contact Title: {cust.ContactTitle}\n" +
-                      $"  Adress: {cust.Address} - City: {cust.City} - Region: {cust.Region} - Postal Code: {cust.PostalCode} - Country: {cust.Country}\n" +
+                    Console.WriteLine($"  * ID: {cust.CustomerID} - Region: {cust.Region} - Company Name: {cust.CompanyName} - Contact Name: {cust.ContactName} - Contact Title: {cust.ContactTitle}\n" +
+                      $"  Adress: {cust.Address} - City: {cust.City} - Postal Code: {cust.PostalCode} - Country: {cust.Country}\n" +
                       $"  Phone: {cust.Phone} - Fax: {cust.Fax} \n");
                 }
                 Console.WriteLine("\n  Press a key to continue...");
@@ -235,12 +241,12 @@ namespace LINQ
                 }
                 Console.WriteLine("----- End of the list -----\n");
                 Console.WriteLine("  Press a key to continue...");
-                Console.ReadKey();
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.ReadKey();
         }
 
         public static void Exercise10()
@@ -263,39 +269,39 @@ namespace LINQ
                 }
                 Console.WriteLine("----- End of the list -----\n");
                 Console.WriteLine("  Press a key to continue...");
-                Console.ReadKey();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.ReadKey();
         }
-        //public static void Exercise11()
-        //{
-        //    try
-        //    {
-        //        CategoriesLogic categLogic = new CategoriesLogic();
 
-        //        int iterator = 1;
+        public static void Exercise11()
+        {
+            try
+            {
+                CategoriesLogic categLogic = new CategoriesLogic();
 
-        //        var categories = categLogic.CategoriesAssociateProducts();
+                int iterator = 1;
 
-        //        Console.WriteLine("----- List of categories with products -----\n");
-        //        foreach (var category in categories)
-        //        {
-        //            Console.WriteLine($"  *{iterator} | ID: {category.CategoryID} - Category Name: {category.CategoryName}");
-        //            iterator++;
-        //        }
-        //        Console.WriteLine("----- The list ends here ------\n");
-        //        Console.WriteLine("  Press a key to continue...");
-        //        Console.ReadKey();
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
+                var categories = categLogic.CategoriesAssociateProducts();
 
-        //}
+                Console.WriteLine("----- List of categories with products -----\n");
+                foreach (var category in categories)
+                {
+                    Console.WriteLine($"  *{iterator} | ID: {category.CategoryID} - Category Name: {category.CategoryName}\n");
+                    iterator++;
+                }
+                Console.WriteLine("----- The list ends here ------\n");
+                Console.WriteLine("  Press a key to continue...");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.ReadKey();
+        }
 
         public static void Exercise12()
         {
@@ -308,15 +314,14 @@ namespace LINQ
 
                 Console.WriteLine($"   * ID: {element.ProductID} - Product Name: {element.ProductName}");
                 Console.WriteLine("\n\n Press a key to continue...");
-                Console.ReadKey();
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.ReadKey();
         }
 
-     
         public static void Exercise13()
         {
             try
@@ -333,14 +338,13 @@ namespace LINQ
                     iterator++;
                 }
                 Console.WriteLine("----- The list ends here -----\n");
-                Console.WriteLine("  Press a key to continue...");
-                Console.ReadKey();
-
+                Console.WriteLine("  Press a key to continue...");       
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            Console.ReadKey();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace LINQ
         static void Main(string[] args)
         {
             int option = 0;
-            Console.WriteLine("----- Welcome to the practice of LINQ -----");
+            Console.WriteLine("----- Welcome to the practice of LINQ -----\n");
 
             do
             {
@@ -16,7 +16,7 @@ namespace LINQ
                 switch (option)
                 {
                     case 1:
-                        //ConsoleHelperLINQ.Exercise1();
+                        ConsoleHelperLINQ.Exercise1();
                         break;
 
                     case 2:
@@ -32,8 +32,9 @@ namespace LINQ
                         break;
 
                     case 5:
-                        //ConsoleHelperLINQ.Exercise5();
+                        ConsoleHelperLINQ.Exercise5();
                         break;
+
                     case 6:
                         ConsoleHelperLINQ.Exercise6();
                         break;
@@ -55,7 +56,7 @@ namespace LINQ
                         break;
 
                     case 11:
-                        //ConsoleHelperLINQ.Exercise11();
+                        ConsoleHelperLINQ.Exercise11();
                         break;
 
                     case 12:

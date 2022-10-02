@@ -1,57 +1,50 @@
 ﻿using Common.Exceptions;
-using Practica.EF.Data;
 using Practica.EF.Entities;
 using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Practica.EF.Logic
 {
     public class CustomersLogic : BaseLogic<Customers>
     {
+        //Query 1 - Exercise 1
         public Customers QueryCustomer(string idEntered)
         {
             var customers = _ctx.Customers;
 
-            var query1 = customers.Take(1);
-
-            return query1.First();
+            return customers.Where(c => c.CustomerID == idEntered)
+                            .FirstOrDefault();
         }
 
+        //Query 4 - Exercise 4
         public IQueryable<Customers> CustomersRegionWA()
         {
             var customers = _ctx.Customers;
-            
-            var query4 = customers.Where(c => c.Region == "WA");
 
-            return query4;
+            return customers.Where(c => c.Region == "WA");
         }
 
+        //Query 8 - Exercise 8
         public IQueryable<Customers> ThreeCustomersRegionWA()
         {
             var customers = _ctx.Customers;
 
-            var query8 = customers.Where(c => c.Region == "WA")
-                                  .Take(3);                          
-            return query8;
+            return customers.Where(c => c.Region == "WA")
+                            .Take(3);                          
         }
 
+        //Query 6 - Exercise 6
         public IQueryable<string> CustomersName()
         {
             var customers = _ctx.Customers;
 
-            var query6 = customers.Select(c => c.ContactName);
-
-            return query6;
+            return customers.Select(c => c.CompanyName);
         }
 
+        //Query 7 - Exercise 7
         public IQueryable<CustomersOrdersDto> CustomersFromRegion_AndOrdersFromDate()
         {
             var customers = _ctx.Customers;
@@ -59,44 +52,41 @@ namespace Practica.EF.Logic
 
             DateTime specificDate = new DateTime(1997, 01, 01);
 
-            var query7 = from c in customers
-                         join o in orders
-                         on c.CustomerID equals o.CustomerID
-                         where c.Region == "WA" && o.OrderDate > specificDate
-                         select new CustomersOrdersDto
-                         {
-                             CustomerID = c.CustomerID,
-                             Region = c.Region,
-                             OrderDate = o.OrderDate,
-                             CompanyName = c.CompanyName,
-                             OrderID = o.OrderID
-                         };
-
-            return query7;
+            return from c in customers
+                   join o in orders
+                   on c.CustomerID equals o.CustomerID
+                   where c.Region == "WA" && o.OrderDate > specificDate
+                   select new CustomersOrdersDto
+                   {
+                       CustomerID = c.CustomerID,
+                       Region = c.Region,
+                       OrderDate = o.OrderDate,
+                       CompanyName = c.CompanyName,
+                       OrderID = o.OrderID
+                   };
         }
 
+        //Query 13 - Exercise 13
         public IQueryable<CustomersOrdersDto> CustomersWithNumberOfOrders()
         {
             var customers = _ctx.Customers;
             var orders = _ctx.Orders;
 
-            var query13 = from c in customers
-                          join o in orders
-                          on c.CustomerID equals o.CustomerID
-                          group c by new
-                          {
-                              CompanyName = c.CompanyName,
-                              CustomerID = c.CustomerID
-                          }
-                          into co
-                          select new CustomersOrdersDto
-                          {
-                              NumberOfOrders = co.Count(),
-                              CustomerID = co.Key.CustomerID,
-                              CompanyName = co.Key.CompanyName
-                          };
-
-            return query13;
+            return from c in customers
+                   join o in orders
+                   on c.CustomerID equals o.CustomerID
+                   group c by new
+                   {
+                       CompanyName = c.CompanyName,
+                       CustomerID = c.CustomerID
+                   }
+                   into co
+                   select new CustomersOrdersDto
+                   {
+                       NumberOfOrders = co.Count(),
+                       CustomerID = co.Key.CustomerID,
+                       CompanyName = co.Key.CompanyName
+                   };
         }
 
 

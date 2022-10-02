@@ -4,7 +4,6 @@ using Practica.EF.Entities;
 using Practica.EF.Entities.DTO;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
 using System.Linq;
 
 namespace Practica.EF.Logic
@@ -18,22 +17,26 @@ namespace Practica.EF.Logic
             _ctx = ctx;
         }
 
-        //preguntar distinct
+        //Query 11 - Exercise 11
         public IQueryable<CategoriesProductsDto> CategoriesAssociateProducts()
         {
             var categories = _ctx.Categories;
             var products = _ctx.Products;
 
-            var query11 = from c in categories
-                          join p in products
-                          on c.CategoryID equals p.CategoryID
-                          select new CategoriesProductsDto
-                          {
-                              CategoryID = c.CategoryID,
-                              CategoryName = c.CategoryName
-                          };
-
-            return query11;
+            return from c in categories
+                   join p in products
+                   on c.CategoryID equals p.CategoryID
+                   group c by new
+                   {
+                       CategoryID = c.CategoryID,
+                       CategoryName = c.CategoryName
+                   }
+                   into cp
+                   select new CategoriesProductsDto
+                   {
+                       CategoryID = cp.Key.CategoryID,
+                       CategoryName = cp.Key.CategoryName
+                   };
         }
 
         public override List<Categories> GetAll()

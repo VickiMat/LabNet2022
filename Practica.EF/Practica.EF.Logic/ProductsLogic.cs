@@ -7,68 +7,60 @@ namespace Practica.EF.Logic
 {
     public class ProductsLogic : BaseLogic<Products>
     {
-
+        //Query 2 - Exercise 2
         public IQueryable<Products> ProductsWithoutStock()
         {
             var products = _ctx.Products;
 
-            var query2 = products.Where(p => p.UnitsInStock == 0);
-                              
-            return query2;
+            return products.Where(p => p.UnitsInStock == 0);
         }
 
+        //Query 3 - Exercise 3
         public IQueryable<Products> ProductsWithStockAndPriceOver3()
         {
             var products = _ctx.Products;
 
-            var query3 = from product in products
-                         where product.UnitsInStock != 0 &&
-                               product.UnitPrice > 3
-                         select product;
-
-            return query3;
+            return from product in products
+                   where product.UnitsInStock != 0 &&
+                         product.UnitPrice > 3
+                   orderby product.UnitPrice
+                   select product;
         }
 
-        public Products ProductWithID_789_OrNull()
+        //Query 5- Exercise 5
+        public override Products FindById(int id)
         {
             var products = _ctx.Products;
 
-            var query5 = from product in products
-                         where product.ProductID == 789
-                         select product;
-            if (query5 == null)
-            {
-                return null;
-            }
-            else return query5.First();
+            return (from product in products
+                    where product.ProductID == id
+                    select product).FirstOrDefault();
         }
 
+        //Query 9 - Exercise 9
         public IEnumerable<Products> ProductsOrderBy_Name()
         {
             var products = _ctx.Products;
 
-            var query9 = from product in products
-                         orderby product.ProductName
-                         select product;
-
-            return query9;
+            return from product in products
+                   orderby product.ProductName
+                   select product;
         }
 
+        //Query 10 - Exercise 10
         public IEnumerable<Products> ProductsOrderBy_UnitsInStock()
         {
             var products = _ctx.Products;
 
-            var query10 = products.OrderByDescending(p => p.UnitsInStock);
-            
-            return query10;
+            return products.OrderByDescending(p => p.UnitsInStock);
         }
 
+        //Query 12 - Exercise 12
         public Products GetFirstProduct()
         {
             var products = _ctx.Products;
 
-            var query12 = products.First();
-            return query12;
+            return products.First();    
         }
 
         public override void Add(Products newT)
@@ -77,11 +69,6 @@ namespace Practica.EF.Logic
         }
 
         public override void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Products FindById(int id)
         {
             throw new NotImplementedException();
         }
