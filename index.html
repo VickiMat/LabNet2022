@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice with HTML+CSS+JS</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      #age {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1> - Contact Form - </h1>
+    </header>
+    <main>
+      <h2>Please fill out the form. And receive a gift!</h3>
+
+      <form id="contact" style="width: 400px" onsubmit="return validateForm()">
+        <fieldset>
+          <legend>Personal information:</legend>
+
+          <label for="fname" >First name:</label><br />
+          <input type="text" class="text-input" name="fname" id="first-name" onblur="validateRequiredField('first-name','First name','messageFN')" /><br />
+          <label class="messageError" id="messageFN"></label><br>
+
+          <label for="lname">Last name:</label><br />
+          <input type="text" class="text-input" name="lname" id="last-name" onblur="validateRequiredField('last-name','Last name','messageLN')" /><br />
+          <label class="messageError" id="messageLN"></label><br>  
+
+          <label for="age">Age:</label><br />
+          <input type="text" id="age" class="text-input" name="age" /><br />
+
+          <p>Select your gender:</p>
+          <input type="radio" name="gender" />
+          <label for="female">Female</label><br />
+          <input type="radio" name="gender" />
+          <label for="male">Male</label><br />
+          <input type="radio" name="gender" />
+          <label for="other">Other</label><br /><br />
+
+          
+        </fieldset><br>
+        <fieldset>
+          <legend>Aditional information:</legend>
+          <label for="company">Company:</label><br />
+          <input type="text" class="text-input" name="company" /><br /><br>
+
+          <label for="mail">E-mail:</label><br />
+          <input type="email" class="text-input" name="mail" id="mail" onblur="validateRequiredField('mail','E-mail','messageM')" /><br />
+          <label class="messageError" id="messageM"></label><br> 
+
+          <input type="checkbox" name="ynewsletter">
+          <label for="ynewsletter">Stay connected</label><br><br>
+
+          <label for="username">Username:</label><br />
+          <input type="text" class="text-input" name="username" id="username" onblur="validateRequiredField('username','User name','messageUN')" /><br />
+          <label class="messageError" id="messageUN"></label><br>  
+
+          <label for="password">Password:</label><br />
+          <input type="password" id="password" class="text-input" name="age" id="password" onblur="validateRequiredField('password','Password','messageP')"/><br />
+          <label class="messageError" id="messageP"></label><br>  
+        </fieldset><br><br>
+      
+          <input  type="button" class="button" onclick="validateForm()" value="Submit" />
+          <input type="button" class="button" value="Reset" onclick="resetForm()" />
+ 
+      </form>
+    </main>
+    <footer>
+      <p>© 2022. Vicki´s form. All rights reserved.</p>
+    </footer>
+    <script src="myjs.js"></script>
+  </body>
+</html>
