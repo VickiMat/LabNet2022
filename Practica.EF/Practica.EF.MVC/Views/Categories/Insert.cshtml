@@ -1,0 +1,14 @@
+﻿@model Practica.EF.MVC.Models.CategoriesView
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h1>View for Insert or Update</h1>
+
+@using (Html.BeginForm("Insert", "Categories", FormMethod.Post))
+{
+    <label>Name: </label> @Html.TextBoxFor(c => c.Name)
+    <label>Description: </label> @Html.TextBoxFor(c => c.Description)
+    <input type="submit" class="btn btn-default" value="Save" />
+}
