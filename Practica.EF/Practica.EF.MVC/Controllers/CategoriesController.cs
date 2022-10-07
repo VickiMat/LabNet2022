@@ -29,28 +29,7 @@ namespace Practica.EF.MVC.Controllers
             return View(categoriesView);
         }
 
-
-        //[HttpGet]
-        //public ActionResult InsUpd(int id = 0)
-        //{
-        //    CategoriesView categ = new CategoriesView();
-        //    if (id == 0)
-        //    {
-        //        //Insert mode ... no data will be shown to textboxes , when primary key ie. id=0
-        //        //Display whole data
-        //    }
-        //    else
-        //    {
-        //        //Update mode... if id is not 0 ,data will be shown to textboxes
-        //    }
-        //    return View(categ);
-        //}
-
-        //public ActionResult Insert()
-        //{
-        //    return View();
-        //}
-        public ActionResult Insert(int id)
+        public ActionResult InsertUpdate(int id)
         {
             if (id != 0)
             {
@@ -70,7 +49,7 @@ namespace Practica.EF.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsUpd(CategoriesView categoriesView)
+        public ActionResult InsertUpdate(CategoriesView categoriesView)
         {
             try
             { 

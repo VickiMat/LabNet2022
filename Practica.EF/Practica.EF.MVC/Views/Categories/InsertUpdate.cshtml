@@ -1,0 +1,50 @@
+﻿@model Practica.EF.MVC.Models.CategoriesView
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h1>Categories</h1>
+
+
+@using (Html.BeginForm("InsertUpdate", "Categories", FormMethod.Post))
+{@Html.ValidationSummary(true)
+<fieldset>
+    <legend>Category information</legend>
+    <table class="table table-bordered">
+        <tr>@Html.HiddenFor(c => c.Id)</tr>
+        <tr>
+            <td>@Html.LabelFor(c => c.Name)</td>
+            <td align="left">
+                @Html.TextBoxFor(c => c.Name, new { style = "width:250px" })
+                @Html.ValidationMessageFor(c => c.Name, "", new
+           {
+               @class = "text-danger"
+           })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(c => c.Description)</td>
+            <td align="left">
+                @Html.TextAreaFor(c => c.Description, new { style = "width:250px" })
+                @Html.ValidationMessageFor(c => c.Description, "", new
+           {
+               @class = "text-danger"
+           })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="reset" class="btn btn-primary" value="Reset" />
+                <input type="submit" class="btn button" value="Save" />
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    }

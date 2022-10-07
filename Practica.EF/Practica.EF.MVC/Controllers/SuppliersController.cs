@@ -1,5 +1,4 @@
-﻿using Common.Exceptions;
-using Practica.EF.Entities;
+﻿using Practica.EF.Entities;
 using Practica.EF.Logic;
 using Practica.EF.MVC.Models;
 using System;
@@ -13,26 +12,39 @@ namespace Practica.EF.MVC.Controllers
     {
         SuppliersLogic supLogic = new SuppliersLogic();
 
-        // GET: Suppliers
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            List<Suppliers> sup = supLogic.GetAll();
-
-            List<SuppliersView> supView = sup.Select(s => new SuppliersView
+            if(search == null)
             {
-                Id = s.SupplierID,
-                CompanyName = s.CompanyName,
-                ContactName = s.ContactName,
-                City = s.City,
-                Country = s.Country
-            }).ToList();
+                List<Suppliers> supplier = supLogic.GetAll();
+                List<SuppliersView> supview = supplier.Select(s => new SuppliersView
+                {
+                    Id = s.SupplierID,
+                    CompanyName = s.CompanyName,
+                    ContactName = s.ContactName,
+                    City = s.City,
+                    Country = s.Country
+                }).ToList();
 
-            return View(supView);
+                return View(supview);
+            }
+            else
+            {
+                var supplier = supLogic.FindSuppliersByCity(search);
+
+                List<SuppliersView> supview = supplier.Select(s => new SuppliersView
+                {
+                    Id = s.SupplierID,
+                    CompanyName = s.CompanyName,
+                    ContactName = s.ContactName,
+                    City = s.City,
+                    Country = s.Country
+                }).ToList();
+
+                return View(supview);
+            }   
         }
-
-
-        //POST: Suppliers
-
+       
         public ActionResult Insert()
         {
             return View();
@@ -129,40 +141,5 @@ namespace Practica.EF.MVC.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
-
-
-
-
-
-
-        //public ActionResult Update(int id, SuppliersView suppliersView)
-        //{
-        //    try
-        //    {
-        //        var sup = supLogic.FindById(id);
-
-        //        if (sup != null)
-        //        {
-        //            Suppliers supplier = new Suppliers
-        //            {
-        //                SupplierID = suppliersView.Id,
-        //                CompanyName = suppliersView.CompanyName,
-        //                ContactName = suppliersView.ContactName,
-        //                City = suppliersView.City,
-        //                Country = suppliersView.Country
-        //            };
-        //            supLogic.Update(supplier);
-        //            return RedirectToAction("Index");
-        //        }
-        //        else throw new NotFoundIDException(id);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return RedirectToAction("Index", "Error");
-        //    }
-        //}
-
     }
-
-
 }

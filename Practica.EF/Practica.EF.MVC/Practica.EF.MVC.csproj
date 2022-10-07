@@ -173,9 +173,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Categories\Insert.cshtml" />
+    <Content Include="Views\Categories\InsertUpdate.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Categories\Modify.cshtml" />
     <Content Include="Views\Suppliers\Index.cshtml" />
     <Content Include="Views\Suppliers\Insert.cshtml" />
     <Content Include="Views\Suppliers\Update.cshtml" />
