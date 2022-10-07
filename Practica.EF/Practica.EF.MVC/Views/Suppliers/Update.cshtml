@@ -1,0 +1,62 @@
+﻿@model Practica.EF.MVC.Models.SuppliersView
+
+@{
+    ViewBag.Title = "Suppliers";
+}
+
+<h1>View for Update</h1>
+
+
+@using (Html.BeginForm("Update/{id}", "Suppliers", FormMethod.Post))
+{@Html.ValidationSummary(true)
+@Html.AntiForgeryToken()
+<fieldset>
+    <legend>Supplier information</legend>
+    <table class="table table-bordered">
+        <tr>
+            @Html.HiddenFor(s => s.Id)
+        </tr>
+        <tr>
+            <td><label>Company Name</label></td>
+            <td>
+                @Html.TextBoxFor(s => s.CompanyName)
+                @Html.ValidationMessageFor(s => s.CompanyName)
+            </td>
+        </tr>
+        <tr>
+            <td><label>Contact Name</label></td>
+            <td>
+                @Html.TextBoxFor(s => s.ContactName)
+                @Html.ValidationMessageFor(s => s.ContactName)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(s => s.City)</td>
+            <td>
+                @Html.TextBoxFor(s => s.City)
+                @Html.ValidationMessageFor(s => s.City)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(s => s.Country)</td>
+            <td>
+                @Html.TextBoxFor(s => s.Country)
+                @Html.ValidationMessageFor(s => s.Country)
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="reset" class="btn btn-primary" value="Reset" />
+                <input type="submit" class="btn btn-default" value="Save" />
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+  }
+    <div>
+        @Html.ActionLink("Back to List", "Index", new { @class = "btn" })
+    </div>
+
+

@@ -6,9 +6,36 @@
 
 <h1>View for Insert or Update</h1>
 
-@using (Html.BeginForm("Insert", "Categories", FormMethod.Post))
-{
-    <label>Name: </label> @Html.TextBoxFor(c => c.Name)
-    <label>Description: </label> @Html.TextBoxFor(c => c.Description)
-    <input type="submit" class="btn btn-default" value="Save" />
+
+@using (Html.BeginForm("InsUpd", "Categories", FormMethod.Post))
+{@Html.ValidationSummary(true)
+<table>
+    <tr>@Html.HiddenFor(c => c.Id)</tr>
+    <tr>
+        <td>@Html.LabelFor(c => c.Name)</td>
+        <td>
+            @Html.EditorFor(c => c.Name, new { id = "Name" })
+            @Html.ValidationMessageFor(c => c.Name)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(c => c.Description)</td>
+        <td>
+            @Html.EditorFor(c => c.Description, new { id = "Description" })
+            @Html.ValidationMessageFor(c => c.Name)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="reset" class="btn btn-primary" value="Reset" />
+            <input type="submit" class="btn btn-default" value="Save" />
+        </td>
+    </tr>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
 }

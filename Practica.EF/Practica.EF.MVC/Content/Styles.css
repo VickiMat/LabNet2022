@@ -1,0 +1,19 @@
+﻿body {
+    background-color: lightgray;
+}
+
+.button{
+    background-color: black;
+    color: white;
+    
+}
+
+.tb 
+{
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+.table-bordered {
+    border: 10px solid black;
+}

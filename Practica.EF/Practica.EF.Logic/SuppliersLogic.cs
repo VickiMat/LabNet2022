@@ -104,6 +104,7 @@ namespace Practica.EF.Logic
                 suppForUpdate.CompanyName = supp.CompanyName;
                 suppForUpdate.ContactName = supp.ContactName;
                 suppForUpdate.City = supp.City;
+                suppForUpdate.Country = supp.Country;
 
                 _ctx.SaveChanges();
             }

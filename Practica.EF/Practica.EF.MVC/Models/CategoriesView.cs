@@ -4,6 +4,7 @@ namespace Practica.EF.MVC.Models
 {
     public class CategoriesView
     {
+        [Key]
         public int Id { get; set; }
 
         [StringLength(15, MinimumLength = 1)]
