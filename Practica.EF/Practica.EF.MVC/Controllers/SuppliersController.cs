@@ -1,9 +1,9 @@
 ﻿using Practica.EF.Entities;
 using Practica.EF.Logic;
+using Practica.EF.MVC.Common;
 using Practica.EF.MVC.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Practica.EF.MVC.Controllers
@@ -14,35 +14,29 @@ namespace Practica.EF.MVC.Controllers
 
         public ActionResult Index(string search)
         {
-            if(search == null)
+            try
             {
-                List<Suppliers> supplier = supLogic.GetAll();
-                List<SuppliersView> supview = supplier.Select(s => new SuppliersView
+                if (search == null)
                 {
-                    Id = s.SupplierID,
-                    CompanyName = s.CompanyName,
-                    ContactName = s.ContactName,
-                    City = s.City,
-                    Country = s.Country
-                }).ToList();
+                    List<Suppliers> supplier = supLogic.GetAll();
 
-                return View(supview);
+                    var supView = SupplierMapper.MapSupplier(supplier);
+
+                    return View(supView);
+                }
+                else
+                {
+                    var supplier = supLogic.FindSuppliersByCity(search);
+
+                    var supView = SupplierMapper.MapSupplier(supplier);
+
+                    return View(supView);
+                }
             }
-            else
+            catch(Exception)
             {
-                var supplier = supLogic.FindSuppliersByCity(search);
-
-                List<SuppliersView> supview = supplier.Select(s => new SuppliersView
-                {
-                    Id = s.SupplierID,
-                    CompanyName = s.CompanyName,
-                    ContactName = s.ContactName,
-                    City = s.City,
-                    Country = s.Country
-                }).ToList();
-
-                return View(supview);
-            }   
+                return RedirectToAction("Index", "Error");
+            }  
         }
        
         public ActionResult Insert()
@@ -67,11 +61,9 @@ namespace Practica.EF.MVC.Controllers
 
                     supLogic.Add(supplier);
                 }
-                string message = "The supplier was inserted succesfully";
-                ViewBag.Message = message;
-                return View();
+                return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return RedirectToAction("Index", "Error");
             }
@@ -84,7 +76,7 @@ namespace Practica.EF.MVC.Controllers
                 supLogic.Delete(id);
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return RedirectToAction("Index", "Error");
             }
@@ -93,19 +85,25 @@ namespace Practica.EF.MVC.Controllers
 
         public ActionResult Update(int id)
         {
-            var data = supLogic.FindById(id);
-
-            SuppliersView sup = new SuppliersView();
-            if(data != null)
+            try
             {
-                sup.Id = data.SupplierID;
-                sup.CompanyName = data.CompanyName;
-                sup.ContactName = data.ContactName;
-                sup.City = data.City;
-                sup.Country = data.Country;
-            }
+                var data = supLogic.FindById(id);
 
-            return View(sup);
+                SuppliersView sup = new SuppliersView();
+                if (data != null)
+                {
+                    sup.Id = data.SupplierID;
+                    sup.CompanyName = data.CompanyName;
+                    sup.ContactName = data.ContactName;
+                    sup.City = data.City;
+                    sup.Country = data.Country;
+                }
+                return View(sup);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error");
+            } 
         }
 
         [HttpPost]
@@ -136,7 +134,7 @@ namespace Practica.EF.MVC.Controllers
                 }
                 else return View();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction("Index", "Error");
             }

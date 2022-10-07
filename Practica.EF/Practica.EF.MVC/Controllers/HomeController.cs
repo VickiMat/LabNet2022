@@ -9,18 +9,16 @@ namespace Practica.EF.MVC.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Categories()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return RedirectToAction("Index","Categories");
         }
 
-        public ActionResult Contact()
+        public ActionResult Suppliers()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return RedirectToAction("Index", "Suppliers");
         }
+
+
     }
 }

@@ -1,10 +1,8 @@
-﻿using Common.Exceptions;
-using Practica.EF.Entities;
+﻿using Practica.EF.Entities;
 using Practica.EF.Logic;
 using Practica.EF.MVC.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,35 +15,49 @@ namespace Practica.EF.MVC.Controllers
         // GET: Suppliers
         public ActionResult Index()
         {
-            List<Categories> categories = categLogic.GetAll();
-
-            List<CategoriesView> categoriesView = categories.Select(c => new CategoriesView
+            try
             {
-                Id = c.CategoryID,
-                Name = c.CategoryName,
-                Description = c.Description,
-            }).ToList();
+                List<Categories> categories = categLogic.GetAll();
 
-            return View(categoriesView);
+                List<CategoriesView> categoriesView = categories.Select(c => new CategoriesView
+                {
+                    Id = c.CategoryID,
+                    Name = c.CategoryName,
+                    Description = c.Description,
+                }).ToList();
+
+                return View(categoriesView);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         public ActionResult InsertUpdate(int id)
         {
-            if (id != 0)
+            try
             {
-                var data = categLogic.FindById(id);
-
-                CategoriesView cat = new CategoriesView();
-
-                if (data != null)
+                if (id != 0)
                 {
-                    cat.Id = data.CategoryID;
-                    cat.Name = data.CategoryName;
-                    cat.Description = data.Description;
+                    var data = categLogic.FindById(id);
+
+                    CategoriesView cat = new CategoriesView();
+
+                    if (data != null)
+                    {
+                        cat.Id = data.CategoryID;
+                        cat.Name = data.CategoryName;
+                        cat.Description = data.Description;
+                    }
+                    return View(cat);
                 }
-                return View(cat);
+                else return View();
             }
-            else return View();
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
 
         [HttpPost]
@@ -55,7 +67,11 @@ namespace Practica.EF.MVC.Controllers
             { 
                 if (ModelState.IsValid)
                 {
-                    Categories category = new Categories { CategoryID = categoriesView.Id, CategoryName = categoriesView.Name, Description = categoriesView.Description };
+                    Categories category = new Categories
+                    { CategoryID = categoriesView.Id, 
+                      CategoryName = categoriesView.Name, 
+                      Description = categoriesView.Description 
+                    };
                     if (categoriesView.Id == 0)
                     {
                         categLogic.Add(category);
@@ -67,16 +83,23 @@ namespace Practica.EF.MVC.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(ex.Message);
+                return RedirectToAction("Index", "Error");
             }
         }
         
         public ActionResult Delete(int id)
-        {        
+        {
+            try
+            {
                 categLogic.Delete(id);
-                return RedirectToAction("Index");   
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error");
+            }
         }
     }
 }

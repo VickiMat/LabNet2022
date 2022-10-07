@@ -35,16 +35,27 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="reset" class="btn btn-primary" value="Reset" />
+                <input type="reset" class="btn btn-primary" value="Reset" onclick="showMessage()"/>
                 <input type="submit" class="btn button" value="Save" />
             </td>
         </tr>
+        
+            
+        
     </table>
 </fieldset>
+<div id="messageReset" style="color:forestgreen; font-size:15px;"></div>
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index","Categories", new { @class = "btn button" })
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     }
+<script>
+    function showMessage()
+    {
+        var message = "The values reset to default correctly";
+        document.getElementById("messageReset").innerHTML = message;
+    }
+</script>

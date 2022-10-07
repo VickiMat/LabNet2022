@@ -20,43 +20,64 @@
             <td><label>Company Name</label></td>
             <td align="left">
                 @Html.TextBoxFor(s => s.CompanyName)
-                @Html.ValidationMessageFor(s => s.CompanyName)
+                @Html.ValidationMessageFor(s => s.CompanyName, "", new
+           {
+               @class = "text-danger"
+           })
             </td>
         </tr>
         <tr>
             <td><label>Contact Name</label></td>
             <td align="left">
                 @Html.TextBoxFor(s => s.ContactName)
-                @Html.ValidationMessageFor(s => s.ContactName)
+                @Html.ValidationMessageFor(s => s.ContactName, "", new
+           {
+               @class = "text-danger"
+           })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(s => s.City)</td>
             <td align="left">
                 @Html.TextBoxFor(s => s.City)
-                @Html.ValidationMessageFor(s => s.City)
+                @Html.ValidationMessageFor(s => s.City, "", new
+           {
+               @class = "text-danger"
+           })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(s => s.Country)</td>
             <td align="left">
                 @Html.TextBoxFor(s => s.Country)
-                @Html.ValidationMessageFor(s => s.Country)
+                @Html.ValidationMessageFor(s => s.Country, "", new
+           {
+               @class = "text-danger"
+           })
             </td>
         </tr>
 
         <tr>
             <td colspan="2">
-                <input type="reset" class="btn btn-primary" value="Reset"/>
-                <input type="submit" class="btn button" value="Save"/>
+                <input type="reset" class="btn btn-primary" value="Reset" onclick="showMessage()"/>
+                <input type="submit" class="btn button" value="Save" />
             </td>
         </tr>
     </table>
 </fieldset>
+<div id="messageReset" style="color:forestgreen; font-size:15px;"></div>
 
-  }
-    <div>
-        @Html.ActionLink("Back to List", "Index", new { @class = "btn" })
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index","Suppliers", new { @class = "btn button" })
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    function showMessage() {
+        var message = "The values reset to default correctly";
+        document.getElementById("messageReset").innerHTML = message;
+    }
+</script>
 
 

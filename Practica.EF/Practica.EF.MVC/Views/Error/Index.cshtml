@@ -1,1 +1,15 @@
-﻿<h1>pROBANDO ERRORES</h1>
+﻿@{
+    ViewBag.Title = "Error page";
+}
+
+<h1>Oops...Something went wrong! A wild bug has appeared</h1>
+
+<h2>The action you are trying to perform could not be done</h2>
+
+<p>Please return to the main page and try with another action</p>
+
+<div>
+    @Html.ActionLink("Back to main page", "BackHome","Error", new { @class = "btn button" })
+</div>
+
+
