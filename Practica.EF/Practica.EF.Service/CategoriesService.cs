@@ -43,7 +43,14 @@ namespace Practica.EF.Service
 
         public void DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                CategoriesLogic.Delete(id);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public List<Categories> GetCategories()

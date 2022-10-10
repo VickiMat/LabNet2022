@@ -29,7 +29,6 @@ namespace Practica.EF.WebAPI.Controllers
             }
         }
 
-
         // GET: api/Categories
         public IHttpActionResult GetCategories()
         {
@@ -112,5 +111,20 @@ namespace Practica.EF.WebAPI.Controllers
                 return Content(HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
+        //DELETE: api/Categories/{id}
+        public IHttpActionResult DeleteCategory(int id)
+        {
+            try
+            {
+                CategoriesService.DeleteCategory(id);
+                return Content(HttpStatusCode.OK,id);
+            }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
     }
 }
