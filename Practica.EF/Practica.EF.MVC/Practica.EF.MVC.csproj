@@ -131,11 +131,13 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\WizardWorldController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoriesView.cs" />
     <Compile Include="Models\SuppliersView.cs" />
+    <Compile Include="Models\WizardWorldView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +181,7 @@
     <Content Include="Views\Suppliers\Index.cshtml" />
     <Content Include="Views\Suppliers\Insert.cshtml" />
     <Content Include="Views\Suppliers\Update.cshtml" />
+    <Content Include="Views\WizardWorld\Houses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -209,6 +212,9 @@
       <Project>{4E4BB2B1-4C88-420D-BA5E-915DA5ADF17F}</Project>
       <Name>Practica.EF.Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

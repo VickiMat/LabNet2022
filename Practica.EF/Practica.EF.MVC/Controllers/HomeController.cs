@@ -19,6 +19,11 @@ namespace Practica.EF.MVC.Controllers
             return RedirectToAction("Index", "Suppliers");
         }
 
+        public ActionResult Houses()
+        {
+            return RedirectToAction("Houses", "WizardWorld");
+        }
+
 
     }
 }

@@ -1,0 +1,28 @@
+﻿@model List<Practica.EF.MVC.Models.WizardWorldView>
+
+<h1>List of Hogwarts Houses</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="active">
+            <th scope="col">Name</th>
+            <th scope="col">House Colours</th>
+            <th scope="col">Founder</th>
+            <th scope="col">Animal</th>
+            <th scope="col">Element</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var house in Model)
+        {
+            <tr>
+                <td>@house.Name</td>
+                <td>@house.HouseColours</td>
+                <td>@house.Founder</td>
+                <td>@house.Animal</td>
+                <td>@house.Element</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -69,6 +69,10 @@
     <Compile Include="Shippers.cs" />
     <Compile Include="Suppliers.cs" />
     <Compile Include="Territories.cs" />
+    <Compile Include="WizardWorld\Root.cs" />
+    <Compile Include="WizardWorld\Head.cs" />
+    <Compile Include="WizardWorld\RootDto.cs" />
+    <Compile Include="WizardWorld\Trait.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
