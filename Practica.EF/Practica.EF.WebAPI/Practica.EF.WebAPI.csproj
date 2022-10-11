@@ -164,12 +164,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoriesRequest.cs" />
     <Compile Include="Models\CategoriesResponse.cs" />
+    <Compile Include="Models\SuppliersRequest.cs" />
+    <Compile Include="Models\SuppliersResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +229,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Categories\" />
+    <Folder Include="Views\Suppliers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -257,6 +261,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DE2B7713-A033-4BCD-AD9E-F267A9D418B0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Practica.EF.Entities\Practica.EF.Entities.csproj">
       <Project>{59024477-A21B-4A9D-8EEC-7204DEAC96FD}</Project>
       <Name>Practica.EF.Entities</Name>

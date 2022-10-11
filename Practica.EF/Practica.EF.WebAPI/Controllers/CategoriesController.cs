@@ -83,7 +83,7 @@ namespace Practica.EF.WebAPI.Controllers
                     Description = reqCat.Description
                 };
                 CategoriesService.AddCategory(category);
-                return Content(HttpStatusCode.Created, category);
+                return Content(HttpStatusCode.Created, $"Category: {category.CategoryName}, was added with id {category.CategoryID}");
             }
             catch(Exception ex)
             {
@@ -104,7 +104,7 @@ namespace Practica.EF.WebAPI.Controllers
                     Description = reqCat.Description
                 };
                 CategoriesService.UpdateCategory(category);
-                return Content(HttpStatusCode.OK, category);
+                return Content(HttpStatusCode.OK, $"Category: {category.CategoryName}, with id {category.CategoryID} was succesfully updated");
             }
             catch (Exception ex)
             {
@@ -118,7 +118,7 @@ namespace Practica.EF.WebAPI.Controllers
             try
             {
                 CategoriesService.DeleteCategory(id);
-                return Content(HttpStatusCode.OK,id);
+                return Content(HttpStatusCode.OK, $"Category with id {id} was succesfully deleted");
             }
             catch (Exception ex)
             {

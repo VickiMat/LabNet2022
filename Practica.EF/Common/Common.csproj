@@ -54,6 +54,7 @@
     <Compile Include="Exceptions\NotFoundIDException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationAPI\ValidationCategories.cs" />
+    <Compile Include="ValidationAPI\ValidationSuppliers.cs" />
     <Compile Include="Validators\GeneralValidator.cs" />
   </ItemGroup>
   <ItemGroup>
