@@ -45,3 +45,29 @@ h1 {
 th {
     text-align: center;
 }
+
+.disabled{
+    font-size: 20px;
+    background-color:black;
+    color:white;
+}
+.colourh tbody tr:first-child {
+    background-color: #740001;
+    color: white;
+    font-size: 18px;
+}
+
+.colourh tr:nth-child(2) {
+    background-color: #222f5b;
+    color: white;
+    font-size: 18px;
+}
+.colourh tr:nth-child(3) {
+    background-color: #ecb939;
+    font-size: 18px;
+}
+.colourh tr:nth-child(4) {
+    background-color: #2a623d;
+    color: white;
+    font-size: 18px;
+}

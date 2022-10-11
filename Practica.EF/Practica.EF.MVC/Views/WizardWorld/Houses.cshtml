@@ -1,11 +1,11 @@
 ﻿@model List<Practica.EF.MVC.Models.WizardWorldView>
 
 <h1>List of Hogwarts Houses</h1>
+<br />
 
-
-<table class="table table-bordered">
+<table class="table colourh table-bordered">
     <thead>
-        <tr class="active">
+        <tr class="disabled">
             <th scope="col">Name</th>
             <th scope="col">House Colours</th>
             <th scope="col">Founder</th>
@@ -26,3 +26,6 @@
         }
     </tbody>
 </table>
+<div>
+    @Html.ActionLink("Back to home", "Home", "WizardWorld", new { @class = "btn button" })
+</div>

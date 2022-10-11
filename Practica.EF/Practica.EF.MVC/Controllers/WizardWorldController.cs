@@ -49,5 +49,10 @@ namespace Practica.EF.MVC.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
+
+        public ActionResult Home()
+        {
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
