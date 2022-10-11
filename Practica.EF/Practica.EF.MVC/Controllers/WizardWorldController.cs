@@ -1,5 +1,5 @@
-﻿using Practica.EF.Logic.WizardWorld;
-using Practica.EF.MVC.Models;
+﻿using Practica.EF.MVC.Models;
+using Practica.EF.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +11,25 @@ namespace Practica.EF.MVC.Controllers
 {
     public class WizardWorldController : Controller
     {
-        private HousesLogic _housesLogic;
-        public HousesLogic HousesLogic
+        private HousesService _housesService;
+        public HousesService HousesService
         {
             get
             {
-                if (_housesLogic == null)
+                if (_housesService == null)
                 {
-                    _housesLogic = new HousesLogic();
+                    _housesService = new HousesService();
                 }
-                return _housesLogic;
+                return _housesService;
             }
         }
 
         // GET: WizardWorld
-
         public async Task<ActionResult> Houses()
         {
             try
             {
-                var houses = await HousesLogic.GetAllHousesDto();
+                var houses = await HousesService.ListHouses();
                 List<WizardWorldView> listView = houses.Select(h => new WizardWorldView
                 {
                     Id = h.id,

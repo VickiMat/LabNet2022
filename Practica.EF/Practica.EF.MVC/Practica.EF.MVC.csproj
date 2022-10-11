@@ -212,6 +212,10 @@
       <Project>{4E4BB2B1-4C88-420D-BA5E-915DA5ADF17F}</Project>
       <Name>Practica.EF.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Practica.EF.Service\Practica.EF.Service.csproj">
+      <Project>{3def71e3-663d-4673-a689-5144343fca0b}</Project>
+      <Name>Practica.EF.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
