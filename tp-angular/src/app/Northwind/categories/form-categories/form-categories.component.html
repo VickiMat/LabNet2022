@@ -1,3 +1,15 @@
-<p>
-  form-categories works!
-</p>
+<h1>Categories form</h1>
+
+<form [formGroup]="categoriesForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="categName">Name</label>
+    <input type="text" formControlName="name" class="form-control" id="categoriesName" placeholder="Enter name">
+  </div>
+  <div class="form-group">
+    <label for="categDescription">Name</label>
+    <input type="text" formControlName="description" class="form-control" id="categDescription" placeholder="Enter description">
+  </div>
+
+  <button type="reset" class="btn btn-primary">Clear</button>
+  <button type="submit" class="btn btn-primary" (click)="saveCategory()">Submit</button>
+</form>

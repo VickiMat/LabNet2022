@@ -8,17 +8,19 @@ import { CategoriesComponent } from './Northwind/categories/categories/categorie
 import { NorthwindModule } from './Northwind/northwind.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './general/header/header.component';
+import { CategoriesModule } from './Northwind/categories/categories.module';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriesComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NorthwindModule,
+    CategoriesModule,
     NoopAnimationsModule,
     MatButtonModule
   ],
