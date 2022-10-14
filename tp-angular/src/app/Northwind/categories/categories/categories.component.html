@@ -1,4 +1,25 @@
-<p>
-  categories works!
-</p>
-<button mat-button color="primary">Primary</button>
+<h1>Categories from Northwind</h1>
+
+<div class="col list-categ">
+  <h2>List of categories with descriptions</h2>
+  <button mat-raised-button color="primary">Add new category</button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID #</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categ of categList">
+        <th>{{categ.ID}}</th>
+        <td>{{categ.Name}}</td>
+        <td>{{categ.Description}}</td>
+        <td><button mat-raised-button color="primary">Edit</button>
+          <button mat-raised-button color="warn">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
