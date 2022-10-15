@@ -12,6 +12,11 @@ const routes: Routes = [
   {
     path: 'form',
     component: FormCategoriesComponent
+  },
+  {
+    path: 'form/:id',
+    component:FormCategoriesComponent,
+    pathMatch: 'full'
   }
 ];
 

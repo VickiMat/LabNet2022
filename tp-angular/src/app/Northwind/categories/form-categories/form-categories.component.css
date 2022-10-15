@@ -1,0 +1,17 @@
+mat-form-field.mat-form-field {
+  font-size: 16px;
+  display: block;
+}
+
+form{
+  margin-left: 40px;
+  margin-right: 80px;
+  align-items: center;
+}
+button{
+  font-size: 18px;
+}
+.back{
+  text-align: end;
+  margin-right: 10%;
+}

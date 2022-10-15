@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
     "@popperjs/core": "^2.11.6",
+    "angular-confirmation-popover": "^6.0.0",
     "bootstrap": "^5.2.2",
     "jquery": "^3.6.1",
     "rxjs": "~7.5.0",

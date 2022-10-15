@@ -2,24 +2,29 @@
 
 <div class="col list-categ">
   <h2>List of categories with descriptions</h2>
-  <button mat-raised-button color="primary">Add new category</button>
+  <button mat-raised-button color="primary" [routerLink]="['/form', 0]">Add new category</button>
   <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">ID #</th>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
-        <th scope="col">Action</th>
+        <th scope="col">Action choose</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let categ of categList">
         <th>{{categ.ID}}</th>
-        <td>{{categ.Name}}</td>
+        <td> {{categ.Name}}</td>
         <td>{{categ.Description}}</td>
-        <td><button mat-raised-button color="primary">Edit</button>
-          <button mat-raised-button color="warn">Delete</button></td>
+        <td class=".col-md-1"><button mat-raised-button color="primary" [routerLink]="['/form', categ.ID]">Update</button>
+        |
+        <button mat-raised-button color="warn" (click)="openConfirmationDialog(categ.ID)">Delete</button></td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<button mat-icon-button color="primary">Back to
+  <mat-icon>home</mat-icon>
+</button>

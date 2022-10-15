@@ -1,5 +1,5 @@
 export class CategResponse{
-  ID?: number;
+  ID!: number;
   Name!: string;
   Description!: string;
 }
