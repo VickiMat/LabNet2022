@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -26,7 +26,7 @@ export class FormCategoriesComponent implements OnInit {
   modeTitle: string = 'Add';
 
   constructor(
-    private _fb: FormBuilder,
+    public fb: FormBuilder,
     private _categoriesService: CategoriesService,
     private _snackBar: MatSnackBar,
     private _route: ActivatedRoute,
@@ -39,14 +39,12 @@ export class FormCategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.editOrAdd();
-    this.categoriesForm = this._fb.group({
+    this.categoriesForm = this.fb.group({
       ID: [null],
-      name: ['', [Validators.required, Validators.maxLength(15)]],
+      nameControl: ['', [Validators.required, Validators.maxLength(15)]],
       description: ['', Validators.maxLength(300)],
     });
   }
-
-  onSubmit() {}
 
   editOrAdd() {
     let id = Number(this._route.snapshot.paramMap.get('id'));
@@ -62,7 +60,7 @@ export class FormCategoriesComponent implements OnInit {
       this.updateData = res;
       this.categoriesForm.patchValue({
         ID: this.updateData.ID,
-        name: this.updateData.Name,
+        nameControl: this.updateData.Name,
         description: this.updateData.Description
       })
     },
@@ -72,7 +70,7 @@ export class FormCategoriesComponent implements OnInit {
   saveCategory() {
     var category = new CategoriesRequest();
     category.ID = this.categoriesForm.get('ID')?.value;
-    category.Name = this.categoriesForm.get('name')?.value;
+    category.Name = this.categoriesForm.get('nameControl')?.value;
     category.Description = this.categoriesForm.get('description')?.value;
 
     if (this.addMode) {

@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
@@ -19,11 +20,17 @@ export class SuppliersComponent implements OnInit {
 
   dialogRef?: MatDialogRef<ConfirmationDialogComponent>;
   dialogError?: MatDialogRef<ErrorDialogComponent>;
-
+  cityForm!: FormGroup;
+  cityName: string = '';
+  cityNotFound: boolean = false;
+  page = 1;
+  count = 0;
+  tableSize = 10;
   public supList: Array<SuppliersResponse> = []
 
   constructor(
     private _suppliersService: SuppliersService,
+    private _fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private _dialog: MatDialog) { }
 
@@ -33,7 +40,10 @@ export class SuppliersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSuppliers();
-  }
+    this.cityForm = this._fb.group({
+     search: ['']
+  });
+}
 
   getSuppliers(){
     this._suppliersService.getSuppliers().subscribe(res =>{
@@ -68,7 +78,19 @@ export class SuppliersComponent implements OnInit {
     });
   }
 
+  searchByCity(){
+    this.cityName = this.cityForm.get('search')?.value;
+    this._suppliersService.getSuppliersByCity(this.cityName).subscribe(res =>{
+      this.supList = res;
+      if(this.supList.length == 0){
+         this.cityNotFound = true;
+      }
+    },(err: HttpErrorResponse)=>{ this.openErrorDialog("Status code: " + err.status + " - " + err.error)})
+  }
 
-
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getSuppliers();
+  }
 
 }

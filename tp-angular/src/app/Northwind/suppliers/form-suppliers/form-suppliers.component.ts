@@ -42,11 +42,9 @@ export class FormSuppliersComponent implements OnInit {
       companyName: ['', [Validators.required, Validators.maxLength(40)]],
       contactName: ['', Validators.maxLength(30)],
       city: ['', [Validators.required, Validators.maxLength(15)]],
-      country: ['', [Validators.required, Validators.maxLength(15)]],
+      country: ['', [Validators.maxLength(15)]],
     });
   }
-
-  onSubmit() {}
 
   editOrAdd() {
     let id = Number(this._route.snapshot.paramMap.get('id'));

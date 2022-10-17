@@ -10,11 +10,11 @@ const routes: Routes = [
     component: SuppliersComponent
   },
   {
-    path: 'form',
+    path: 'formSuppliers',
     component: FormSuppliersComponent
   },
   {
-    path: 'form/:id',
+    path: 'formSuppliers/:id',
     component: FormSuppliersComponent,
     pathMatch: 'full'
   }

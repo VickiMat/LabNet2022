@@ -17,6 +17,9 @@ export class CategoriesComponent implements OnInit {
 
   dialogRef?: MatDialogRef<ConfirmationDialogComponent>;
   dialogError?: MatDialogRef<ErrorDialogComponent>;
+  page = 1;
+  count = 0;
+  tableSize = 5;
 
   public categList: Array<CategoriesResponse> = []
 
@@ -66,5 +69,10 @@ export class CategoriesComponent implements OnInit {
     },
     (err: HttpErrorResponse) => {this.openErrorDialog("Status code: " + err.status + " - " + err.error)})
   };
+
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getCategories();
+  }
 
 }

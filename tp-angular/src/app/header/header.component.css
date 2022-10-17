@@ -1,1 +1,8 @@
 
+.navbar-custom{
+  background-color: rgba(169, 131, 190, 0.774);
+}
+
+.nav-item:hover{
+  background-color: rgba(208, 172, 228, 0.774);
+}

@@ -1,0 +1,35 @@
+mat-form-field.mat-form-field {
+  font-size: 16px;
+  display: block;
+}
+
+form{
+  margin-left: 40px;
+  margin-right: 80px;
+  align-items: center;
+}
+button{
+  font-size: 18px;
+}
+
+.back{
+  text-align: start;
+  margin-left: 40px;
+}
+.button-action{
+  text-align: end;
+}
+
+h1 {
+  text-align: start;
+  font-size: 35px;
+  margin-top: 40px;
+  color: rgb(58, 11, 48);
+  margin-bottom: 30px;
+  margin-left: 30px;
+ }
+
+ h2{
+ text-align: center;
+  font-size: 30px;
+ }
