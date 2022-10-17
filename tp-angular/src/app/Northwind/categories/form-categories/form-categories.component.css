@@ -12,6 +12,9 @@ button{
   font-size: 18px;
 }
 .back{
+  text-align: start;
+  margin-left: 40px;
+}
+.button-action{
   text-align: end;
-  margin-right: 10%;
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CategResponse } from '../models/categResp';
+import { CategoriesResponse } from '../models/categoriesResponse';
 import { CategoriesRequest } from '../models/categoriesRequest';
 
 
@@ -16,23 +16,23 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) {}
 
-  public addCategories(categoriesRequest: CategoriesRequest): Observable<any> {
+  public addCategories(categoriesRequest: CategoriesRequest): Observable<Object> {
     return this.http.post(this.url, categoriesRequest);
   }
 
-  public updateCategories(categoriesRequest: CategoriesRequest): Observable<any> {
+  public updateCategories(categoriesRequest: CategoriesRequest): Observable<Object> {
     return this.http.put(this.url, categoriesRequest);
   }
 
-  public getCategories(): Observable<Array<CategResponse>> {
-    return this.http.get<Array<CategResponse>>(this.url);
+  public getCategories(): Observable<Array<CategoriesResponse>> {
+    return this.http.get<Array<CategoriesResponse>>(this.url);
   }
 
-  public deleteCategories(categID: number): Observable<number> {
+  public deleteCategories(categID: number): Observable<Object> {
     return this.http.delete<number>(this.url + "/" + categID);
   }
 
-  public getCategoriesById(categID: number): Observable<CategResponse> {
-    return this.http.get<CategResponse>(this.url + "/" + categID);
+  public getCategoriesById(categID: number): Observable<CategoriesResponse> {
+    return this.http.get<CategoriesResponse>(this.url + "/" + categID);
   }
 }

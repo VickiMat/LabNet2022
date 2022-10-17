@@ -1,5 +1,5 @@
 export class CategoriesRequest{
-  ID?: number;
+  ID!: number;
   Name!: string;
   Description!: string;
 }

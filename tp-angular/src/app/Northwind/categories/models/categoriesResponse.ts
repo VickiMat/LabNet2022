@@ -1,5 +1,5 @@
 export class CategoriesResponse{
-  ID?: number;
+  ID!: number;
   Name!: string;
-  Description!: string;
+  Description?: string;
 }

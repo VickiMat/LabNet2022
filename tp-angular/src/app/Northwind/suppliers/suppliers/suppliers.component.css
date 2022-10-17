@@ -1,0 +1,8 @@
+.table-hover tbody tr:hover {
+  background-color: rgba(193, 150, 218, 0.7);
+  color: rgb(58, 11, 48);
+}
+
+.list-categ{
+  text-align: center;
+}

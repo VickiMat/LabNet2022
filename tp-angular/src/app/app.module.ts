@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CategoriesComponent } from './Northwind/categories/categories/categories.component';
 import { NorthwindModule } from './Northwind/northwind.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './general/header/header.component';
+import { HeaderComponent } from './header/header.component';
 import { CategoriesModule } from './Northwind/categories/categories.module';
 import { HomePageComponent } from './home-page/home-page.component';
 
@@ -20,7 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CategoriesModule,
+    NorthwindModule,
     NoopAnimationsModule,
     MatButtonModule
   ],
