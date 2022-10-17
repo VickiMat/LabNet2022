@@ -10,7 +10,7 @@
           <mat-label>Search supplier by City</mat-label>
           <input type="text" matInput formControlName="search" class="form-control" id="search" placeholder="Enter city name"/>
         </mat-form-field>
-        <button mat-raised-button color="primary" [routerLink]="['/suppliers']" (click)="searchByCity()">Search</button>
+        <button mat-raised-button color="primary" (click)="searchByCity()">Search</button>
       </form>
     </div>
   </div>
@@ -27,9 +27,9 @@
     </thead>
     <tbody>
       <tr *ngIf="cityNotFound">
-        <td>Sorry, we didn´t find any result matching with that name</td>
+        <td colspan="6">Sorry, we didn´t find any result matching with that name</td>
       </tr>
-      <tr *ngFor="let sup of supList| paginate : {
+      <tr *ngFor="let sup of supList | paginate : {
         itemsPerPage: tableSize,
         currentPage: page,
         totalItems: count

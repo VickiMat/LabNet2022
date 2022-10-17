@@ -80,12 +80,18 @@ export class SuppliersComponent implements OnInit {
 
   searchByCity(){
     this.cityName = this.cityForm.get('search')?.value;
-    this._suppliersService.getSuppliersByCity(this.cityName).subscribe(res =>{
-      this.supList = res;
-      if(this.supList.length == 0){
-         this.cityNotFound = true;
-      }
-    },(err: HttpErrorResponse)=>{ this.openErrorDialog("Status code: " + err.status + " - " + err.error)})
+    if(this.cityName == null || this.cityName == ''){
+      this.getSuppliers();
+      this.cityNotFound = false;
+    }
+    else{
+      this._suppliersService.getSuppliersByCity(this.cityName).subscribe(res =>{
+        this.supList = res;
+        if(this.supList.length == 0){
+           this.cityNotFound = true;
+        }
+      },(err: HttpErrorResponse)=>{ this.openErrorDialog("Status code: " + err.status + " - " + err.error)})
+    }
   }
 
   onTableDataChange(event: any){

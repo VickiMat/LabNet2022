@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -24,7 +24,7 @@ export class SuppliersService {
   }
 
   public getSuppliersByCity(city: string): Observable<Array<SuppliersResponse>> {
-    return this.http.get<Array<SuppliersResponse>>(this.url + "/" + city);
+    return this.http.get<Array<SuppliersResponse>>(this.url, {params: new HttpParams().set('City', city)});
   }
 
   public addSupplier(suppliersRequest: SuppliersRequest): Observable<Object> {

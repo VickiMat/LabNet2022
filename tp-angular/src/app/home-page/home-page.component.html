@@ -1,8 +1,12 @@
-<h1>Welcome to Northwind Manager!</h1>
+<h1>Northwind Manager</h1>
 
-<nav>
-  <ul>
-    <li><a routerLink="/categories" routerLinkActive="active" ariaCurrentWhenActive="page">Categories</a></li>
-    <li><a routerLink="/categories/form" routerLinkActive="active" ariaCurrentWhenActive="page">Add categories</a></li>
-  </ul>
-</nav>
+<h3>Welcome to our page, to start select an option</h3>
+
+<div class="add">
+  <button mat-raised-button color="primary" [routerLink]="['/categories']">Categories List</button>
+  <button mat-raised-button color="primary" [routerLink]="['/formCategories', 0]">Add new Category</button>
+</div>
+<div class="add">
+  <button mat-raised-button color="primary" [routerLink]="['/suppliers']">Suppliers List</button>
+  <button mat-raised-button color="primary" [routerLink]="['/formSuppliers', 0]">Add new Supplier</button>
+</div>
