@@ -12,4 +12,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  redirectPage(route: string){
+    window.location.href = route;
+  }
 }
