@@ -1,0 +1,43 @@
+h1 {
+  overflow: hidden;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 40px;
+  color: rgb(58, 11, 48);
+  margin-bottom: 50px;
+ }
+ h1:before,
+ h1:after {
+  background-color: rgb(51, 8, 77);
+  content: "";
+  display: inline-block;
+  height: 3px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+ }
+ h1:before {
+  right: 0.5em;
+  margin-left: -50%;
+ }
+ h1:after {
+  left: 0.5em;
+  margin-right: -50%;
+ }
+
+ h3{
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 50px;
+ }
+
+ .container{
+  display: flex;
+  justify-content: space-evenly
+ }
+
+ mat-card{
+  margin-bottom: 30px;
+  border: solid 3px #673ab7;
+  height: 150px;
+ }

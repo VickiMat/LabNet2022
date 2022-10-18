@@ -1,0 +1,23 @@
+<h1>Northwind Manager</h1>
+
+<h3>Welcome to our page, to start select an option</h3>
+<div class="container">
+  <mat-card>
+    <mat-card-title>Categories</mat-card-title>
+    <mat-card-subtitle>from Northwind</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="['/categories']">Categories List</button>
+      <button mat-raised-button color="primary" [routerLink]="['/formCategories', 0]">Add new Category</button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+  <mat-card>
+    <mat-card-title>Suppliers</mat-card-title>
+    <mat-card-subtitle>from Northwind</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="['/suppliers']">Suppliers List</button>
+      <button mat-raised-button color="primary" [routerLink]="['/formSuppliers', 0]">Add new Supplier</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

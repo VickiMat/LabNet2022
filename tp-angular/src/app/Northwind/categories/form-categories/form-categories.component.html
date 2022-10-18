@@ -1,0 +1,33 @@
+<h1>Categories</h1>
+
+<h2>{{modeTitle}} form</h2>
+
+<form [formGroup]="categoriesForm" (ngSubmit)="saveCategory()">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Category Name</mat-label>
+      <input type="text" matInput formControlName="nameControl" class="form-control" id="categoriesName" placeholder="Enter name"/>
+      <mat-error *ngIf="categoriesForm.controls['nameControl'].hasError('maxlength')">
+        Name admits <strong>15 length</strong> at max!
+      </mat-error>
+      <mat-error *ngIf="categoriesForm.controls['nameControl'].hasError('required')"> Category name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input type="text" matInput formControlName="description" class="form-control" id="categDescription" placeholder="Enter description"/>
+      <mat-error *ngIf="categoriesForm.controls['description'].hasError('maxlength')">
+        Description admits <strong>300 length</strong> at max!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="button-action">
+    <button type="reset" mat-stroked-button color="primary">Clear</button> |
+    <button type="submit" mat-raised-button color="primary" (click)="saveCategory()" [disabled]="categoriesForm.invalid"> Save </button>
+  </div>
+</form>
+<div class="back">
+  <button mat-raised-button color="primary" routerLink="/categories">
+    Back to list
+  </button>
+</div>

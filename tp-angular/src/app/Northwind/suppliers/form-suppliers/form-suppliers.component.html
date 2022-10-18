@@ -1,0 +1,53 @@
+<h1>Suppliers</h1>
+
+<h2>{{modeTitle}} form</h2>
+
+<form [formGroup]="suppliersForm" (ngSubmit)="saveSupplier()">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Company Name</mat-label>
+      <input type="text" matInput formControlName="companyName" class="form-control" id="companyName" placeholder="Enter company name"/>
+      <mat-error *ngIf="suppliersForm.controls['companyName'].hasError('maxlength')">
+        Description admits <strong>40 length</strong> at max!
+      </mat-error>
+      <mat-error *ngIf="suppliersForm.controls['companyName'].hasError('required')"> Company name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Name</mat-label>
+      <input type="text" matInput formControlName="contactName" class="form-control" id="contactName" placeholder="Enter contact name"/>
+      <mat-error *ngIf="suppliersForm.controls['contactName'].hasError('maxlength')">
+        Description admits <strong>30 length</strong> at max!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input type="text" matInput formControlName="city" class="form-control" id="city" placeholder="Enter city"/>
+      <mat-error *ngIf="suppliersForm.controls['city'].hasError('maxlength')">
+        Description admits <strong>15 length</strong> at max!
+      </mat-error>
+      <mat-error *ngIf="suppliersForm.controls['city'].hasError('required')">
+        City is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <input type="text" matInput formControlName="country" class="form-control" id="country" placeholder="Enter country"/>
+      <mat-error *ngIf="suppliersForm.controls['country'].hasError('maxlength')">
+        Country admits <strong>15 length</strong> at max!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="button-action">
+    <button type="reset" mat-stroked-button color="primary">Clear</button> |
+    <button type="submit" mat-raised-button color="primary" (click)="saveSupplier()" [disabled]="suppliersForm.invalid"> Save </button>
+  </div>
+</form>
+<div class="back">
+  <button mat-raised-button color="primary" routerLink="/suppliers">
+    Back to list
+  </button>
+</div>

@@ -1,0 +1,13 @@
+.buttons{
+  text-align: end;
+}
+
+.message{
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+::ng-deep.mat-dialog-container {
+  border-radius: 20px;
+  border: solid 3px rgb(158, 28, 28);
+}

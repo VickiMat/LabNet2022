@@ -1,0 +1,42 @@
+<div class="col list-categ">
+  <h1>List of Categories</h1>
+  <div class="add">
+    <button mat-raised-button color="primary" [routerLink]="['/formCategories', 0]">Add new category</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID #</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categ of categList | paginate : {
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count
+      };
+      let i = index">
+        <th>{{categ.ID}}</th>
+        <td> {{categ.Name}}</td>
+        <td>{{categ.Description}}</td>
+        <td class=".col-md-1"><button mat-raised-button color="primary" [routerLink]="['/formCategories', categ.ID]">Update</button>
+        |
+        <button mat-raised-button color="warn" (click)="openConfirmationDialog(categ.ID)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>
+<div class="back">
+  <button mat-raised-button color="primary" routerLink="">Back to home</button>
+</div>
+
