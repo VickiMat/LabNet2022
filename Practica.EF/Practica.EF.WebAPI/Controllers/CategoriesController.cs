@@ -1,4 +1,5 @@
-﻿using Practica.EF.Entities;
+﻿using Common.Exceptions;
+using Practica.EF.Entities;
 using Practica.EF.Service;
 using Practica.EF.WebAPI.Models;
 using System;
@@ -7,8 +8,10 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 
+
 namespace Practica.EF.WebAPI.Controllers
 {
+    
     public class CategoriesController : ApiController
     {
         private CategoriesService _categoriesService;
@@ -43,10 +46,11 @@ namespace Practica.EF.WebAPI.Controllers
                 }).ToList();
 
                 return Ok(responseCat);
+          
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -66,9 +70,13 @@ namespace Practica.EF.WebAPI.Controllers
 
                 return Ok(responseCat);
             }
-            catch(Exception ex)
+            catch(NotFoundIDException)
             {
-                return Content(HttpStatusCode.NotFound, ex.Message);
+                return Content(HttpStatusCode.NotFound, "The id doesn´t exists");
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.NotFound, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -85,9 +93,9 @@ namespace Practica.EF.WebAPI.Controllers
                 CategoriesService.AddCategory(category);
                 return Content(HttpStatusCode.Created, $"Category: {category.CategoryName}, was added with id {category.CategoryID}");
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -106,9 +114,9 @@ namespace Practica.EF.WebAPI.Controllers
                 CategoriesService.UpdateCategory(category);
                 return Content(HttpStatusCode.OK, $"Category: {category.CategoryName}, with id {category.CategoryID} was succesfully updated");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -120,9 +128,9 @@ namespace Practica.EF.WebAPI.Controllers
                 CategoriesService.DeleteCategory(id);
                 return Content(HttpStatusCode.OK, $"Category with id {id} was succesfully deleted");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 

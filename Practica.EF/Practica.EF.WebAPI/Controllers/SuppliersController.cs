@@ -45,9 +45,9 @@ namespace Practica.EF.WebAPI.Controllers
 
                 return Ok(respSup);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -68,9 +68,13 @@ namespace Practica.EF.WebAPI.Controllers
                 };
                 return Ok(respSup);
             }
-            catch (Exception ex)
+            catch (NotFoundIDException)
             {
-                return Content(HttpStatusCode.NotFound, ex.Message);
+                return Content(HttpStatusCode.NotFound, "The id doesn´t exists");
+            }
+            catch (Exception)
+            {
+                return Content(HttpStatusCode.NotFound, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -92,9 +96,9 @@ namespace Practica.EF.WebAPI.Controllers
 
                 return Ok(respSup);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.NotFound, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -114,9 +118,9 @@ namespace Practica.EF.WebAPI.Controllers
                 SupService.AddSupplier(sup);
                 return Content(HttpStatusCode.Created, $"Supplier: {sup.CompanyName}, was added with id {sup.SupplierID}");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -138,9 +142,9 @@ namespace Practica.EF.WebAPI.Controllers
                 SupService.UpdateSupplier(sup);
                 return Content(HttpStatusCode.OK, $"Supplier: {sup.CompanyName}, with id {sup.SupplierID} was succesfully updated");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
 
@@ -156,9 +160,9 @@ namespace Practica.EF.WebAPI.Controllers
             {
                 return Content(HttpStatusCode.NotFound, nex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, ex.Message);
+                return Content(HttpStatusCode.BadRequest, "Something went wrong, contact with technical support.");
             }
         }
     }
